@@ -1,0 +1,86 @@
+import type {
+  mattermost$Locale,
+  mattermost$User,
+  mattermost$UserPatch
+} from './mattermost.js.flow';
+
+declare module 'mattermost-redux/client' {
+  declare class Client4 {
+    // Property Accessors
+    setUserAgent(userAgent: string): void;
+
+    getToken(): string;
+    setToken(token: string): string;
+
+    setAcceptLanguage(locale: mattermost$Locale): void;
+
+    setEnableLogging(enable: boolean): void;
+
+    setIncludeCookies(include: boolean): void;
+
+    setUserId(userId: string): void;
+
+    getServerVersion(): string;
+
+    // URIs
+    getUrl(): string;
+    setUrl(url: string): void;
+
+    getUrlVersion(): string;
+
+    getBaseRoute(): string;
+
+    getUsersRoute(): string;
+    getUserRoute(userId: string): string;
+
+    getTeamsRoute(): string;
+    getTeamRoute(teamId: string): string;
+    getTeamNameRoute(teamName: string): string;
+    getTeamMembersRoute(teamId: string): string;
+    getTeamMemberRoute(teamId: string, userId: string): string;
+
+    getChannelsRoute(): string;
+    getChannelRoute(channelId: string): string;
+    getChannelMembersRoute(channelId: string): string;
+    getChannelMemberRoute(channelId: string, userId: string): string;
+
+    getPostsRoute(): string;
+    getPostRoute(postId: string): string;
+
+    getReactionsRoute(): string;
+
+    getCommandsRoute(): string;
+
+    getFilesRoute(): string;
+    getFileRoute(fileId: string): string;
+
+    getPreferencesRoute(userId: string): string;
+
+    getIncomingHooksRoute(): string;
+    getIncomingHookRoute(hookId: string): string;
+
+    getOutgoingHooksRoute(): string;
+    getOutgoingHookRoute(hookId: string): string;
+
+    getOAuthRoute(): string;
+    getOAuthAppsRoute(): string;
+    getOAuthAppRoute(appId: string): string;
+
+    getEmojisRoute(): string;
+    getEmojiRoute(emojiId: string): string;
+
+    getBrandRoute(): string;
+    getBrandImageUrl(timestamp: number): string;
+    getJobsRoute(): string;
+    
+    getPluginsRoute(): string;
+    getPluginRoute(pluginId: string): string;
+
+    // Methods
+    getMe(): Promise<mattermost$User>;
+    patchMe(user: mattermost$UserPatch): Promise<mattermost$User>;
+
+    login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User>;
+    logout(): Promise<Response>;
+  }
+};

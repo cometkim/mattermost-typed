@@ -1,0 +1,183 @@
+declare type mattermost$Entity = {
+  id?: string,
+  create_at?: number,
+  update_at?: number,
+  delete_at?: number
+};
+
+declare type mattermost$AuthService =
+  | ''
+  | 'email'
+  | 'gitlab'
+  | 'google'
+  | 'office365'
+  | 'ldap'
+  | 'saml';
+
+declare type mattermost$Locale = 
+  | 'de'
+  | 'en'
+  | 'es'
+  | 'fr'
+  | 'it'
+  | 'ja'
+  | 'ko'
+  | 'nl'
+  | 'pl'
+  | 'pt-BR'
+  | 'ru'
+  | 'tr'
+  | 'zh-CN'
+  | 'zh-TW';
+
+declare type mattermost$User$NotifyProps = {
+	channel?: boolean,
+	comments?: 'any' | 'root' | 'never',
+	desktop?: 'all' | 'mention' | 'none',
+	desktop_duration?: 3 | 5 | 10 | 0, // zero means infinity.
+	desktop_sound?: boolean,
+	email?: boolean,
+	first_name?: boolean,
+	mention_keys?: string,
+	push?: 'all' | 'mention' | 'none',
+	push_status?: 'online' | 'away' | 'offline',
+	user_id?: string
+};
+
+declare type mattermost$User = mattermost$Entity & {
+  username?: string,
+  password?: string,
+  auth_data?: string,
+  auth_service?: mattermost$AuthService,
+  email?: string,
+  email_verified?: boolean,
+  nickname?: string,
+  first_name?: string,
+  last_name?: string,
+  position?: string,
+  roles?: string,
+  allow_marketing?: boolean,
+  props?: {},
+  notify_props?: mattermost$User$NotifyProps,
+  last_password_update?: number,
+  last_picture_update?: number,
+  locale?: mattermost$Locale
+};
+
+declare type mattermost$UserPatch = {
+  username?: string,
+  nickname?: string,
+  first_name?: string,
+  last_name?: string,
+  position?: string,
+  email?: string,
+  props?: {},
+  notify_props?: mattermost$User$NotifyProps,
+  locale?: mattermost$Locale
+};
+
+declare type mattermost$Team = mattermost$Entity & {
+  display_name?: string,
+  name?: string,
+  description?: string,
+  email?: string,
+  type?: 'O' | 'I',
+  company_name?: string,
+  allowed_domains?: string,
+  invite_id?: string,
+  allow_open_invite?: boolean
+};
+
+declare type mattermost$TeamPatch = {
+  display_name?: string,
+  description?: string,
+  company_name?: string,
+  invite_id?: string,
+  allow_open_invite?: boolean
+};
+
+declare type mattermost$Channel = mattermost$Entity & {
+  team_id?: string,
+  type?: 'O' | 'P' | 'D' | 'G',
+  display_name?: string,
+  name?: string,
+  header?: string,
+  purpose?: string,
+  last_post_at?: number,
+  total_msg_count?: number,
+  extra_update_at?: number,
+  creator_id?: string
+};
+
+declare type mattermost$ChannelPatch = {
+  display_name?: string,
+  name?: string,
+  header?: string,
+  purpose?: string
+};
+
+declare type mattermost$SlackAttachment$Field = {
+  title: string,
+  value: string,
+  short: boolean
+};
+
+declare type mattermost$SlackAttachment = {
+  id?: number,
+  fallback?: string,
+  color?: string,
+  pretext?: string,
+  author_name?: string,
+  author_icon?: string,
+  title?: string,
+  title_link?: string,
+  text?: string,
+  fields?: mattermost$SlackAttachment$Field[],
+  image_url?: string,
+  thumb_url?: string,
+  footer?: string,
+  footer_icon?: string,
+  ts?: ?number
+};
+
+declare type mattermost$Post$Props = {
+  attachments?: mattermost$SlackAttachment[],
+  from_webhook?: boolean
+}
+
+declare type mattermost$Post = mattermost$Entity & {
+  is_pinned?: boolean,
+  user_id?: string,
+  channel_id?: string,
+  root_id?: string,
+  parent_id?: string,
+  original_id?: string,
+  message?: string,
+  type?: ''
+    | 'slack_attachment'
+    | 'system_generic'
+    // | 'system_join_leave' // Deprecated
+    | 'system_join_channel'
+    | 'system_leave_channel'
+    // | 'system_add_remove' // Deprecated
+    | 'system_add_to_channel'
+    | 'system_remove_from_channel'
+    | 'system_header_change'
+    | 'system_displayname_change'
+    | 'system_purpose_change'
+    | 'system_channel_deleted'
+    | 'system_ephemeral',
+  props?: mattermost$Post$Props,
+  hashtags?: string,
+  file_ids?: string[],
+  pending_post_id?: string,
+  has_reactions?: boolean
+};
+
+declare type mattermost$PostPatch = {
+  is_pinned?: boolean,
+  message?: string,
+  props?: mattermost$Post$Props,
+  FileIds?: string[],
+  has_reactions?: boolean
+};

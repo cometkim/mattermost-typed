@@ -1,12 +1,22 @@
 import type {
   mattermost$Locale,
   mattermost$User,
-  mattermost$UserPatch
+  mattermost$UserPatch,
+  mattermost$UserAutocomplete,
+  mattermost$UserSearch,
+  mattermost$UserStatus,
+  mattermost$Session,
+  mattermost$Audit,
+  mattermost$MfaSecret,
 } from './mattermost.js.flow';
 
 declare module 'mattermost-redux/client' {
+  declare type mattermost$ResponseStatus = {
+    status: 'OK' | 'FAIL' | 'REMOVE';
+  };
+
   declare class Client4 {
-    // Property Accessors
+    // Properties
     setUserAgent(userAgent: string): void;
 
     getToken(): string;
@@ -76,11 +86,46 @@ declare module 'mattermost-redux/client' {
     getPluginsRoute(): string;
     getPluginRoute(pluginId: string): string;
 
-    // Methods
+    // User Routes
     getMe(): Promise<mattermost$User>;
     patchMe(user: mattermost$UserPatch): Promise<mattermost$User>;
+    getUser(userId: string): Promise<mattermost$User>;
+    getUserByUsername(username: string): Promise<mattermost$User>;
+    getUserByEmail(email: string): Promise<mattermost$User>;
+    createUser(user: mattermost$User): Promise<mattermost$User>;
+    updateUser(user: mattermost$UserPatch & {id: string}): Promise<mattermost$User>;
 
     login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User>;
     logout(): Promise<Response>;
+   
+    getProfiles(page?: number, perPage?: number): Promise<mattermost$User[]>;
+    getProfilesByIds(userIds: string[]): Promise<mattermost$User[]>;
+    getProfilesByUsernames(usernames: string[]): Promise<mattermost$User[]>;
+    getProfilesInTeam(teamId: string, page?: number, perPage?: number, sort?: string): Promise<mattermost$User[]>;
+    getProfilesNotInTeam(teamId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
+    getProfilesWithoutTeam(page?: number, perPage?: number): Promise<mattermost$User[]>;
+    getProfilesInChannel(channelId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
+    getProfilesNotInChannel(teamId: string, channelId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
+    searchUsers(term: string, options?: mattermost$UserSearch): Promise<mattermost$User[]>;
+    autocompleteUsers(name: string, teamId: string, channelId: string): Promise<mattermost$UserAutocomplete>;
+
+    updateUserRoles(userId: string, roles: string): Promise<mattermost$ResponseStatus>;
+    updateUserMfa(userId: string, activate: boolean, code?: string): Promise<mattermost$ResponseStatus>;
+
+    getProfilePictureUrl(userId: string, lastPictureUpdate: number): string;
+
+    getSessions(userId: string): Promise<mattermost$Session[]>;
+    getCurrentSession(userId: string, token: string): Promise<mattermost$Session>;
+    revokeSession(userId: string, sessionId: string): Promise<mattermost$ResponseStatus>;
+    attachDevice(deviceId: string): Promise<mattermost$ResponseStatus>;
+
+    getUserAudits(userId: string, page?: number, perPage?: number): Promise<mattermost$Audit[]>;
+
+    checkUserMfa(loginId: string): Promise<{ mfa_required: boolean }>;
+    generateMfaSecret(userId: string): Promise<mattermost$MfaSecret>;
+
+    getStatusesByIds(userIds: string[]): Promise<mattermost$UserStatus[]>;
+    getStatus(userId: string): Promise<mattermost$UserStatus>;
+    updateStatus(status: mattermost$UserStatus): Promise<mattermost$UserStatus>;
   }
 };

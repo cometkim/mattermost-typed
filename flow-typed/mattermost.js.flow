@@ -76,6 +76,28 @@ declare type mattermost$UserPatch = {
   locale?: mattermost$Locale
 };
 
+declare type mattermost$UserAutocomplete = {
+  users: mattermost$User[],
+  out_of_channel: mattermost$User[]
+};
+
+declare type mattermost$UserSearch = {
+  term: string,
+  team_id?: string,
+  not_in_team_id?: string,
+  in_channel_id?: string,
+  not_in_channel_id?: string,
+  allow_inactive?: boolean,
+  without_team?: boolean
+};
+
+declare type mattermost$UserStatus = {
+  user_id: string,
+  status: 'online' | 'away' | 'offline',
+  manual?: boolean,
+  last_activity_at?: number
+};
+
 declare type mattermost$Team = mattermost$Entity & {
   display_name?: string,
   name?: string,
@@ -96,6 +118,13 @@ declare type mattermost$TeamPatch = {
   allow_open_invite?: boolean
 };
 
+declare type mattermost$TeamMember = {
+  team_id: string,
+  user_id: string,
+  roles: string,
+  delete_at: number
+};
+
 declare type mattermost$Channel = mattermost$Entity & {
   team_id?: string,
   type?: 'O' | 'P' | 'D' | 'G',
@@ -114,6 +143,24 @@ declare type mattermost$ChannelPatch = {
   name?: string,
   header?: string,
   purpose?: string
+};
+
+declare type mattermost$ChannelMember = {
+  channel_id: string,
+  user_id: string,
+  roles: string,
+  last_viewed_at: number,
+  msg_count: number,
+  mention_count: number,
+  notify_props: mattermost$ChannelMember$NotifyProps,
+  last_update_at: number
+};
+
+declare type mattermost$ChannelMember$NotifyProps = {
+  desktop?: 'default' | 'all' | 'mention' | 'none',
+  email?: 'default' | 'all' | 'mention' | 'none',
+  mark_unread?: 'all' | 'mention',
+  push?: 'default' | 'all' | 'mention' | 'none'
 };
 
 declare type mattermost$SlackAttachment$Field = {
@@ -180,4 +227,39 @@ declare type mattermost$PostPatch = {
   props?: mattermost$Post$Props,
   FileIds?: string[],
   has_reactions?: boolean
+};
+
+declare type mattermost$Session = {
+  id: string,
+  token: string,
+  create_at: number,
+  expires_at: number,
+  last_activity_at: number,
+  user_id: string,
+  device_id: string,
+  roles: string,
+  is_oauth: boolean,
+  props: mattermost$Session$Props,
+  team_members: mattermost$TeamMember[]
+};
+
+declare type mattermost$Session$Props = {
+  browser: string,
+  os: string,
+  platform: string
+};
+
+declare type mattermost$Audit = {
+  id: string,
+  create_at: number,
+  user_id: string,
+  action: string,
+  extra_info: string,
+  ip_address: string,
+  session_id: string
+};
+
+declare type mattermost$MfaSecret = {
+  secret: string,
+  qr_code: string
 };

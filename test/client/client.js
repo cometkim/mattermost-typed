@@ -9,8 +9,9 @@ async function loginAndGetUser(username: string, password: string): Promise<?mat
     let user;
     try {
         user = await client.login(username, password);
-    } catch (error) {
-        console.error(error);
+    } catch (e) { // Flow does not support exceptions yet
+        const error = (e: mattermost$ResponseError);
+        console.error(error.message);
         return null;
     }
 

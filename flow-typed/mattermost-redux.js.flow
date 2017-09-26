@@ -10,11 +10,18 @@ import type {
   mattermost$MfaSecret,
 } from './mattermost.js.flow';
 
-declare module 'mattermost-redux/client' {
-  declare type mattermost$ResponseStatus = {
-    status: 'OK' | 'FAIL' | 'REMOVE';
-  };
+declare type mattermost$ResponseStatus = {
+  status: 'OK' | 'FAIL' | 'REMOVE';
+};
 
+declare type mattermost$ResponseError = {
+  status_code: number,
+  id: string,
+  message: string,
+  request_id: string
+};
+
+declare module 'mattermost-redux/client' {
   declare class Client4 {
     // Properties
     setUserAgent(userAgent: string): void;

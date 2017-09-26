@@ -35,11 +35,11 @@ user.id = '';
 user.unkown = null;
 user.create_at = 0;
 // $ExpectError
-user.auth_service = 'unkown';
+user.auth_service = 'unknown';
 // $ExpectError
-user.notify_props.push = 'unkown';
+user.notify_props.push = 'unknown';
 // $ExpectError
-user.locale = 'unkown';
+user.locale = 'unknown';
 
 const post: mattermost$Post = {
 	id: '',

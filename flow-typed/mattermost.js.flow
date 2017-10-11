@@ -122,7 +122,19 @@ declare type mattermost$TeamMember = {
   team_id: string,
   user_id: string,
   roles: string,
-  delete_at: number
+  delete_at?: number
+};
+
+declare type mattermost$TeamUnread = {
+  team_id: string,
+  msg_count: number,
+  mention_count: number
+};
+
+declare type mattermost$TeamStats = {
+  team_id: string,
+  total_member_count: number,
+  active_member_count: number
 };
 
 declare type mattermost$Channel = mattermost$Entity & {
@@ -161,6 +173,11 @@ declare type mattermost$ChannelMember$NotifyProps = {
   email?: 'default' | 'all' | 'mention' | 'none',
   mark_unread?: 'all' | 'mention',
   push?: 'default' | 'all' | 'mention' | 'none'
+};
+
+declare type mattermost$ChannelStats = {
+  channel_id: string,
+  member_count: number
 };
 
 declare type mattermost$SlackAttachment$Field = {
@@ -225,8 +242,15 @@ declare type mattermost$PostPatch = {
   is_pinned?: boolean,
   message?: string,
   props?: mattermost$Post$Props,
-  FileIds?: string[],
+  file_ids?: string[],
   has_reactions?: boolean
+};
+
+declare type mattermost$PostList = {
+  order: string[],
+  posts: {
+    [postId: string]: mattermost$Post
+  }
 };
 
 declare type mattermost$Session = {
@@ -262,4 +286,114 @@ declare type mattermost$Audit = {
 declare type mattermost$MfaSecret = {
   secret: string,
   qr_code: string
+};
+
+declare type mattermost$OAuthApp = {
+  id?: string,
+  creator_id?: string,
+  create_at?: number,
+  update_at?: number,
+  client_secret?: string,
+  name?: string,
+  description?: string,
+  icon_url?: string,
+  callback_urls?: string[],
+  homepage?: string,
+  is_trusted?: boolean
+};
+
+declare type mattermost$UserAccessToken = {
+	id?: string,
+	token?: string,
+  user_id?: string,
+	description?: string
+};
+
+declare type mattermost$FileInfo = {
+  id: string,
+  user_id: string,
+  post_id: string,
+  create_at: number,
+  update_at: number,
+  delete_at: number,
+  name: string,
+  extension: string,
+  size: number,
+  mime_type: string,
+  width: number,
+  height: number,
+  has_preview_image: boolean
+};
+
+declare type mattermost$Reaction = {
+  user_id: string,
+  post_id: string,
+  emoji_name: string,
+  create_at: number
+};
+
+declare type mattermost$Preference = { user_id: string } & {
+  category: 'notifications',
+  name: 'email_interval',
+  value: '0' | '30' | '900' | '3600' // zero means 'never', thirty means 'immediately'
+} | {
+  category: 'direct_channel_show' | 'group_channel_show',
+  name: string, // channel's id
+  value: 'true' | 'false'
+} | {
+  category: 'tutorial_step',
+  name: string, // user's id
+  value: string // numberic
+} | {
+  category: 'advanced_settings',
+  name: 
+    | 'feature_enabled_embed_preview' 
+    | 'feature_enabled_emojipicker' 
+    | 'feature_enabled_markdown_preview' 
+    | 'feature_enabled_webrtc_preview' 
+    | 'formatting' ,
+  value: 'true' | 'false'
+} | {
+  category: 'flagged_post',
+  name: string, // post's id
+  value: 'true' | 'false'
+} | {
+  category: 'favorite_channel',
+  name: string, // channel's id
+  value: 'true' | 'false'
+} | {
+  category: 'display_settings',
+  name: 'collapse_previews' | 'use_military_time',
+  value: 'true' | 'false' 
+} | {
+  category: 'display_settings',
+  name: 'channel_display_mode',
+  value: 'full' | 'centered'
+} | {
+  category: 'display_settings',
+  name: 'message_display',
+  value: 'clean' | 'compact'
+} | {
+  category: 'display_settings',
+  name: 'name_format',
+  value: 'full_name'
+} | {
+  category: 'display_settings',
+  name: 'selected_font',
+  value: string // font name
+} | {
+  category: 'last',
+  name: 'team' | 'channel',
+  value: string // last team's id or last channel's id
+} | {
+  category: 'theme',
+  name: '',
+  value: string
+};
+
+declare type mattermost$ResponseError = {
+  status_code: number,
+  id: string,
+  message: string,
+  request_id: string
 };

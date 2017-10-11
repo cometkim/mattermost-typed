@@ -1,138 +1,345 @@
-import type {
-  mattermost$Locale,
-  mattermost$User,
-  mattermost$UserPatch,
-  mattermost$UserAutocomplete,
-  mattermost$UserSearch,
-  mattermost$UserStatus,
-  mattermost$Session,
-  mattermost$Audit,
-  mattermost$MfaSecret,
-} from './mattermost.js.flow';
+declare class mattermost_redux$Client {
 
-declare type mattermost$ResponseStatus = {
-  status: 'OK' | 'FAIL' | 'REMOVE';
-};
+}
 
-declare type mattermost$ResponseError = {
-  status_code: number,
-  id: string,
-  message: string,
-  request_id: string
-};
+declare class mattermost_redux$Client4 {
+  // Properties
+  setUserAgent(userAgent: string): void;
+
+  getToken(): string;
+  setToken(token: string): string;
+
+  setAcceptLanguage(locale: mattermost$Locale): void;
+
+  setEnableLogging(enable: boolean): void;
+
+  setIncludeCookies(include: boolean): void;
+
+  setUserId(userId: string): void;
+
+  getServerVersion(): string;
+
+  // URIs
+  getUrl(): string;
+  setUrl(url: string): void;
+
+  getUrlVersion(): string;
+
+  getBaseRoute(): string;
+
+  getUsersRoute(): string;
+  getUserRoute(userId: string): string;
+
+  getTeamsRoute(): string;
+  getTeamRoute(teamId: string): string;
+  getTeamNameRoute(teamName: string): string;
+  getTeamMembersRoute(teamId: string): string;
+  getTeamMemberRoute(teamId: string, userId: string): string;
+
+  getChannelsRoute(): string;
+  getChannelRoute(channelId: string): string;
+  getChannelMembersRoute(channelId: string): string;
+  getChannelMemberRoute(channelId: string, userId: string): string;
+
+  getPostsRoute(): string;
+  getPostRoute(postId: string): string;
+
+  getReactionsRoute(): string;
+
+  getCommandsRoute(): string;
+
+  getFilesRoute(): string;
+  getFileRoute(fileId: string): string;
+
+  getPreferencesRoute(userId: string): string;
+
+  getIncomingHooksRoute(): string;
+  getIncomingHookRoute(hookId: string): string;
+
+  getOutgoingHooksRoute(): string;
+  getOutgoingHookRoute(hookId: string): string;
+
+  getOAuthRoute(): string;
+  getOAuthAppsRoute(): string;
+  getOAuthAppRoute(appId: string): string;
+
+  getEmojisRoute(): string;
+  getEmojiRoute(emojiId: string): string;
+
+  getBrandRoute(): string;
+  getBrandImageUrl(timestamp: number): string;
+  getJobsRoute(): string;
+  
+  getPluginsRoute(): string;
+  getPluginRoute(pluginId: string): string;
+
+  // User Routes
+  getMe(): Promise<mattermost$User>;
+  patchMe(user: mattermost$UserPatch): Promise<mattermost$User>;
+  getUser(userId: string): Promise<mattermost$User>;
+  getUserByUsername(username: string): Promise<mattermost$User>;
+  getUserByEmail(email: string): Promise<mattermost$User>;
+  createUser(user: mattermost$User): Promise<mattermost$User>;
+  updateUser(user: mattermost$UserPatch & {id: string}): Promise<mattermost$User>;
+
+  login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User>;
+  logout(): Promise<Response>;
+  
+  getProfiles(page?: number, perPage?: number): Promise<mattermost$User[]>;
+  getProfilesByIds(userIds: string[]): Promise<mattermost$User[]>;
+  getProfilesByUsernames(usernames: string[]): Promise<mattermost$User[]>;
+  getProfilesInTeam(teamId: string, page?: number, perPage?: number, sort?: string): Promise<mattermost$User[]>;
+  getProfilesNotInTeam(teamId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
+  getProfilesWithoutTeam(page?: number, perPage?: number): Promise<mattermost$User[]>;
+  getProfilesInChannel(channelId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
+  getProfilesNotInChannel(teamId: string, channelId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
+  searchUsers(term: string, options?: mattermost$UserSearch): Promise<mattermost$User[]>;
+  autocompleteUsers(name: string, teamId: string, channelId: string): Promise<mattermost$UserAutocomplete>;
+
+  updateUserRoles(userId: string, roles: string): Promise<{ status: 'OK' }>;
+  updateUserMfa(userId: string, activate: boolean, code?: string): Promise<{ status: 'OK' }>;
+
+  getProfilePictureUrl(userId: string, lastPictureUpdate: number): string;
+
+  getSessions(userId: string): Promise<mattermost$Session[]>;
+  getCurrentSession(userId: string, token: string): Promise<mattermost$Session>;
+  revokeSession(userId: string, sessionId: string): Promise<{ status: 'OK' }>;
+  attachDevice(deviceId: string): Promise<{ status: 'OK' }>;
+
+  getUserAudits(userId: string, page?: number, perPage?: number): Promise<mattermost$Audit[]>;
+
+  checkUserMfa(loginId: string): Promise<{ mfa_required: boolean }>;
+  generateMfaSecret(userId: string): Promise<mattermost$MfaSecret>;
+
+  getStatusesByIds(userIds: string[]): Promise<mattermost$UserStatus[]>;
+  getStatus(userId: string): Promise<mattermost$UserStatus>;
+  updateStatus(status: mattermost$UserStatus): Promise<mattermost$UserStatus>;
+
+  switchEmailToOAuth(service: mattermost$AuthService, email: string, password: string, mfaCode?: string): Promise<{ follow_link: string }>;
+  switchOAuthToEmail(currentService: mattermost$AuthService, email: string, password: string): Promise<{ follow_link: string }>;
+  switchEmailToLdap(email: string, emailPassword: string, ldapId: string, ldapPassword: string, mfaCode?: string): Promise<{ follow_link: string }>;
+  switchLdapToEmail(ldapPassword: string, email: string, emailPassword: string, mfaCode?: string): Promise<{ follow_link: string }>;
+
+  getAuthorizedOAuthApps(userId: string): Promise<mattermost$OAuthApp[]>;
+  authorizeOAuthApp(responseType: 'code', clientId: string, redirectUri: string, state: string, scope: string): Promise<{ redirect_url: string }>;
+  deauthorizeOAuthApp(clientId: string): Promise<{ status: 'OK' }>;
+
+  createUserAccessToken(userId: string, description: string): Promise<mattermost$UserAccessToken>;
+  getUserAccessToken(tokenId: string): Promise<mattermost$UserAccessToken>;
+  getUserAccessTokensForUser(userId: string, page?: number, perPage?: number): Promise<mattermost$UserAccessToken[]>;
+  revokeUserAccessToken(tokenId: string): Promise<{ status: 'OK' }>;
+  
+  // Team Routes
+  createTeam(team: mattermost$Team): Promise<mattermost$Team>;
+  updateTeam(team: mattermost$TeamPatch & { id: string }): Promise<mattermost$Team>;
+
+  checkIfTeamExists(teamName: string): Promise<{ exists: boolean }>;
+
+  getTeams(page?: number, perPage?: number): Promise<mattermost$Team[]>;
+  getTeam(teamId: string): Promise<mattermost$Team>;
+  getMyTeams(): Promise<mattermost$Team[]>;
+  getTeamsForUser(userId: string): Promise<mattermost$Team[]>;
+
+  getMyTeamMembers(): Promise<mattermost$TeamMember[]>;
+  getMyTeamUnreads(): Promise<mattermost$TeamUnread[]>;
+
+  getTeamMembers(teamId: string, page?: number, perPage?: number): Promise<mattermost$TeamMember[]>;
+  getTeamMembersForUser(userId: string): Promise<mattermost$TeamMember[]>;
+  getTeamMember(teamId: string, userId: string): Promise<mattermost$TeamMember>;
+  getTeamMembersByIds(teamId: string, userIds: string[]): Promise<mattermost$TeamMember[]>;
+
+  addToTeam(teamId: string, userId: string): Promise<mattermost$TeamMember>;
+  addToTeamFromInvite(hash?: string, data?: string, inviteId?: string): Promise<mattermost$TeamMember>;
+  addUsersToTeam(teamId: string, userIds: string[]): Promise<mattermost$TeamMember[]>;
+  joinTeam(inviteId: string): Promise<mattermost$TeamMember>;
+  removeFromTeam(teamId: string, userId: string): Promise<{ status: 'OK' }>;
+
+  getTeamStats(teamId: string): Promise<mattermost$TeamStats>;
+
+  getTeamInviteInfo(inviteId: string): Promise<mattermost$Team>;
+
+  updateTeamMemberRoles(teamId: string, userId: string, roles: string): Promise<{ status: 'OK' }>;
+
+  sendEmailInvitesToTeam(teamId: string, emails: string[]): Promise<{ status: 'OK' }>;
+
+  importTeam(teamId: string, file: File, importFrom: 'slack'): Promise<{ results: string }>;
+  
+  // Channel Routes
+  createChannel(channel: mattermost$Channel): Promise<mattermost$Channel>;
+  createDirectChannel(userIds: [string, string]): Promise<mattermost$Channel>;
+  createGroupChannel(userIds: [string, string]): Promise<mattermost$Channel>;
+  createGroupChannel(userIds: [string, string, string]): Promise<mattermost$Channel>;
+  createGroupChannel(userIds: [string, string, string, string]): Promise<mattermost$Channel>;
+  createGroupChannel(userIds: [string, string, string, string, string]): Promise<mattermost$Channel>;
+  createGroupChannel(userIds: [string, string, string, string, string, string]): Promise<mattermost$Channel>;
+  createGroupChannel(userIds: [string, string, string, string, string, string, string]): Promise<mattermost$Channel>;
+  deleteChannel(channelId: string): Promise<{ status: 'OK' }>;
+  updateChannel(channel: mattermost$Channel): Promise<mattermost$Channel>;
+  patchChannel(channelId: string, patch: mattermost$ChannelPatch): Promise<mattermost$Channel>;
+
+  updateChannelNotifyProps(props: mattermost$ChannelMember$NotifyProps): Promise<{ status: 'OK' }>;
+
+  getChannel(channelId: string): Promise<mattermost$Channel>;
+  getChannelByName(teamId: string, channelName: string): Promise<mattermost$Channel>;
+  getChannels(teamId: string, page?: number, perPage?: number): Promise<mattermost$Channel[]>;
+  getMyChannels(teamId: string): Promise<mattermost$Channel[]>;
+
+  getMyChannelMember(channelId: string): Promise<mattermost$ChannelMember>;
+  getMyChannelMembers(teamId: string): Promise<mattermost$ChannelMember[]>;
+  getChannelMembers(channelId: string, page?: number, perPage?: number): Promise<mattermost$ChannelMember[]>;
+  getChannelMember(channelId: string, userId: string): Promise<mattermost$ChannelMember>;
+  getChannelMembersByIds(channelId: string, userIds: string[]): Promise<mattermost$ChannelMember[]>;
+
+  addToChannel(userId: string, channelId: string): Promise<mattermost$ChannelMember>;
+  removeFromChannel(userId: string, channelId: string): Promise<{ status: 'OK' }>;
+
+  updateChannelMemberRoles(channelId: string, userId: string, roles: string): Promise<{ status: 'OK' }>;
+
+  getChannelStats(channelId: string): Promise<mattermost$ChannelStats>;
+
+  viewMyChannel(channelId: string, prevChannelId?: string): Promise<{ status: 'OK', last_viewed_at_times: { [channel_id: string]: number } }>;
+
+  searchChannels(teamId: string, term: string): Promise<mattermost$Channel[]>;
+  
+  // Post Routes
+  createPost(post: mattermost$Post): Promise<mattermost$Post>;
+  updatePost(post: mattermost$Post): Promise<mattermost$Post>;
+  patchPost(post: mattermost$PostPatch): Promise<mattermost$Post>;
+  deletePost(postId: string): Promise<{ status: 'OK' }>;
+
+  getPostThread(postId: string): Promise<mattermost$PostList>;
+  getPosts(channelId: string, page?: number, perPage?: number): Promise<mattermost$PostList>;
+  getPostsSince(channelId: string, since: number): Promise<mattermost$PostList>;
+  getPostsBefore(channelId: string, postId: string, page?: number, perPage?: number): Promise<mattermost$PostList>;
+  getPostsAfter(channelId: string, postId: string, page?: number, perPage?: number): Promise<mattermost$PostList>;
+
+  getFileInfosForPost(postId: string): Promise<mattermost$FileInfo[]>;
+
+  getFlaggedPosts(userId: string, channelId?: string, teamId?: string, page?: number, perPage?: number): Promise<mattermost$PostList>;
+  getPinnedPosts(channelId: string): Promise<mattermost$PostList>;
+
+  pinPost(postId: string): Promise<{ status: 'OK' }>;
+  unpinPost(postId: string): Promise<{ status: 'OK' }>;
+
+  addReaction(userId: string, postId: string, emojiName: string): Promise<mattermost$Reaction>;
+  removeReaction(userId: string, postId: string, emojiName: string): Promise<{ status: 'OK' }>;
+  getReactionsForPost(postId: string): Promise<mattermost$Reaction[]>;
+
+  searchPosts(teamId: string, terms: string, isOrSearch: boolean): Promise<mattermost$PostList>;
+
+  getOpenGraphMetadata(url: string): Promise<{}>;
+
+  doPostAction(postId: string, actionId: string): Promise<{ status: 'OK' }>;
+  
+  // Files Routes
+  getFileUrl(fileId: string, timestamp?: string): string;
+  getFileThumbnailUrl(fileId: string, timestamp?: string): string;
+  getFilePreviewUrl(fileId: string, timestamp?: string): string;
+
+  uploadFile(fileFormData: FormData, formBoundary?: string): Promise<{ file_infos: mattermost$FileInfo[], client_ids: string[] }>;
+
+  getFilePublicLink(fileId: string): Promise<{ link: string }>;
+
+  // Preference Routes
+  savePreferences(userId: string, preferences: mattermost$Preference[]): Promise<{ status: 'OK' }>;
+  getMyPreferences(): Promise<mattermost$Preference[]>;
+  deletePreferences(userId: string, preferences: mattermost$Preference[]): Promise<{ status: 'OK' }>;
+  
+  // General Routes
+  ping(): Promise<{ status: 'OK' | 'unhealthy' }>;
+  logClientError(message: string, level?: 'ERROR' | 'DEBUG'): Promise<{}>;
+  // getClientConfigOld(): Promise<{}>;
+  // getClientLicenseOld(): Promise<{}>;
+  // getTranslations(url): Promise<>;
+  // getWebSocketUrl(): string;
+  // webrtcToken(): Promise<>;
+  
+  // // Integration Routes
+  // createIncomingWebhook(hook): Promise<>;
+  // getIncomingWebhook(hookId): Promise<>;
+  // getIncomingWebhooks(teamId = '', page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // removeIncomingWebhook(hookId): Promise<>;
+  // updateIncomingWebhook(hook): Promise<>;
+  // createOutgoingWebhook(hook): Promise<>;
+  // getOutgoingWebhook(hookId): Promise<>;
+  // getOutgoingWebhooks(channelId = '', teamId = '', page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // removeOutgoingWebhook(hookId): Promise<>;
+  // updateOutgoingWebhook(hook): Promise<>;
+  // regenOutgoingHookToken(id): Promise<>;
+  // getCommandsList(teamId): Promise<>;
+  // getCustomTeamCommands(teamId): Promise<>;
+  // executeCommand(command, commandArgs = {}): Promise<>;
+  // addCommand(command): Promise<>;
+  // editCommand(command): Promise<>;
+  // regenCommandToken(id): Promise<>;
+  // deleteCommand(id): Promise<>;
+  // createOAuthApp(app): Promise<>;
+  // editOAuthApp(app): Promise<>;
+  // getOAuthApps(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // getOAuthApp(appId): Promise<>;
+  // getOAuthAppInfo(appId): Promise<>;
+  // deleteOAuthApp(appId): Promise<>;
+  // regenOAuthAppSecret(appId): Promise<>;
+  
+  // // Emoji Routes
+  // createCustomEmoji(emoji, imageData): Promise<>;
+  // getCustomEmojis(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // deleteCustomEmoji(emojiId): Promise<>;
+  // getSystemEmojiImageUrl = (filename);
+  // getCustomEmojiImageUrl = (id);
+  
+  // // Jobs Routes
+  // getJob(id): Promise<>;
+  // getJobs(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // getJobsByType(type, page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // createJob(job): Promise<>;
+  // cancelJob(id): Promise<>;
+  
+  // // Admin Routes
+  // getLogs(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // getAudits(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // getConfig(): Promise<>;
+  // updateConfig(config): Promise<>;
+  // reloadConfig(): Promise<>;
+  // testEmail(config): Promise<>;
+  // invalidateCaches(): Promise<>;
+  // recycleDatabase(): Promise<>;
+  // createComplianceReport(job): Promise<>;
+  // getComplianceReport(reportId): Promise<>;
+  // getComplianceReports(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
+  // uploadBrandImage(imageData): Promise<>;
+  // getClusterStatus(): Promise<>;
+  // testLdap(): Promise<>;
+  // syncLdap(): Promise<>;
+  // getSamlCertificateStatus(): Promise<>;
+  // uploadPublicSamlCertificate(fileData): Promise<>;
+  // uploadPrivateSamlCertificate(fileData): Promise<>;
+  // uploadIdpSamlCertificate(fileData): Promise<>;
+  // deletePublicSamlCertificate(): Promise<>;
+  // deletePrivateSamlCertificate(): Promise<>;
+  // deleteIdpSamlCertificate(): Promise<>;
+  // testElasticsearch(config): Promise<>;
+  // purgeElasticsearchIndexes(): Promise<>;
+  // uploadLicense(fileData): Promise<>;
+  // removeLicense(): Promise<>;
+  // getAnalytics(name = 'standard', teamId = ''): Promise<>;
+  
+  // // Plugin Routes - EXPERIMENTAL - SUBJECT TO CHANGE
+  // uploadPlugin(fileData): Promise<>;
+  // getPlugins(): Promise<>;
+  // removePlugin(pluginId): Promise<>;
+  // getWebappPlugins(): Promise<>;
+}
+
+declare module 'mattermost-redux/client/client' {
+  declare export default mattermost_redux$Client;  
+}
+
+declare module 'mattermost-redux/client/client4' {
+  declare export default mattermost_redux$Client4;
+}
 
 declare module 'mattermost-redux/client' {
-  declare class Client4 {
-    // Properties
-    setUserAgent(userAgent: string): void;
-
-    getToken(): string;
-    setToken(token: string): string;
-
-    setAcceptLanguage(locale: mattermost$Locale): void;
-
-    setEnableLogging(enable: boolean): void;
-
-    setIncludeCookies(include: boolean): void;
-
-    setUserId(userId: string): void;
-
-    getServerVersion(): string;
-
-    // URIs
-    getUrl(): string;
-    setUrl(url: string): void;
-
-    getUrlVersion(): string;
-
-    getBaseRoute(): string;
-
-    getUsersRoute(): string;
-    getUserRoute(userId: string): string;
-
-    getTeamsRoute(): string;
-    getTeamRoute(teamId: string): string;
-    getTeamNameRoute(teamName: string): string;
-    getTeamMembersRoute(teamId: string): string;
-    getTeamMemberRoute(teamId: string, userId: string): string;
-
-    getChannelsRoute(): string;
-    getChannelRoute(channelId: string): string;
-    getChannelMembersRoute(channelId: string): string;
-    getChannelMemberRoute(channelId: string, userId: string): string;
-
-    getPostsRoute(): string;
-    getPostRoute(postId: string): string;
-
-    getReactionsRoute(): string;
-
-    getCommandsRoute(): string;
-
-    getFilesRoute(): string;
-    getFileRoute(fileId: string): string;
-
-    getPreferencesRoute(userId: string): string;
-
-    getIncomingHooksRoute(): string;
-    getIncomingHookRoute(hookId: string): string;
-
-    getOutgoingHooksRoute(): string;
-    getOutgoingHookRoute(hookId: string): string;
-
-    getOAuthRoute(): string;
-    getOAuthAppsRoute(): string;
-    getOAuthAppRoute(appId: string): string;
-
-    getEmojisRoute(): string;
-    getEmojiRoute(emojiId: string): string;
-
-    getBrandRoute(): string;
-    getBrandImageUrl(timestamp: number): string;
-    getJobsRoute(): string;
-    
-    getPluginsRoute(): string;
-    getPluginRoute(pluginId: string): string;
-
-    // User Routes
-    getMe(): Promise<mattermost$User>;
-    patchMe(user: mattermost$UserPatch): Promise<mattermost$User>;
-    getUser(userId: string): Promise<mattermost$User>;
-    getUserByUsername(username: string): Promise<mattermost$User>;
-    getUserByEmail(email: string): Promise<mattermost$User>;
-    createUser(user: mattermost$User): Promise<mattermost$User>;
-    updateUser(user: mattermost$UserPatch & {id: string}): Promise<mattermost$User>;
-
-    login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User>;
-    logout(): Promise<Response>;
-   
-    getProfiles(page?: number, perPage?: number): Promise<mattermost$User[]>;
-    getProfilesByIds(userIds: string[]): Promise<mattermost$User[]>;
-    getProfilesByUsernames(usernames: string[]): Promise<mattermost$User[]>;
-    getProfilesInTeam(teamId: string, page?: number, perPage?: number, sort?: string): Promise<mattermost$User[]>;
-    getProfilesNotInTeam(teamId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
-    getProfilesWithoutTeam(page?: number, perPage?: number): Promise<mattermost$User[]>;
-    getProfilesInChannel(channelId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
-    getProfilesNotInChannel(teamId: string, channelId: string, page?: number, perPage?: number): Promise<mattermost$User[]>;
-    searchUsers(term: string, options?: mattermost$UserSearch): Promise<mattermost$User[]>;
-    autocompleteUsers(name: string, teamId: string, channelId: string): Promise<mattermost$UserAutocomplete>;
-
-    updateUserRoles(userId: string, roles: string): Promise<mattermost$ResponseStatus>;
-    updateUserMfa(userId: string, activate: boolean, code?: string): Promise<mattermost$ResponseStatus>;
-
-    getProfilePictureUrl(userId: string, lastPictureUpdate: number): string;
-
-    getSessions(userId: string): Promise<mattermost$Session[]>;
-    getCurrentSession(userId: string, token: string): Promise<mattermost$Session>;
-    revokeSession(userId: string, sessionId: string): Promise<mattermost$ResponseStatus>;
-    attachDevice(deviceId: string): Promise<mattermost$ResponseStatus>;
-
-    getUserAudits(userId: string, page?: number, perPage?: number): Promise<mattermost$Audit[]>;
-
-    checkUserMfa(loginId: string): Promise<{ mfa_required: boolean }>;
-    generateMfaSecret(userId: string): Promise<mattermost$MfaSecret>;
-
-    getStatusesByIds(userIds: string[]): Promise<mattermost$UserStatus[]>;
-    getStatus(userId: string): Promise<mattermost$UserStatus>;
-    updateStatus(status: mattermost$UserStatus): Promise<mattermost$UserStatus>;
-  }
-};
+  declare export var Client: mattermost_redux$Client;
+  declare export var Client4: mattermost_redux$Client4;
+}

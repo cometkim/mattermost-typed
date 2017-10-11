@@ -1,8 +1,7 @@
 // @flow
 
-import {Client4} from 'mattermost-redux/client';
+import {Client4 as client} from 'mattermost-redux/client';
 
-const client = new Client4();
 client.setUrl('https://your-mattermost-url.com');
 
 async function loginAndGetUser(username: string, password: string): Promise<?mattermost$User>{
@@ -20,7 +19,7 @@ async function loginAndGetUser(username: string, password: string): Promise<?mat
 
 (async () => {
     const user = await loginAndGetUser('user', 'password');
-    
+     
     if (user) {
         console.log(user.username);
     }

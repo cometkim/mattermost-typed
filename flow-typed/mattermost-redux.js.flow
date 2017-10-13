@@ -3,6 +3,8 @@ declare class mattermost_redux$Client {
 }
 
 declare class mattermost_redux$Client4 {
+  constructor(): void;
+
   // Properties
   setUserAgent(userAgent: string): void;
 
@@ -248,38 +250,42 @@ declare class mattermost_redux$Client4 {
   // General Routes
   ping(): Promise<{ status: 'OK' | 'unhealthy' }>;
   logClientError(message: string, level?: 'ERROR' | 'DEBUG'): Promise<{}>;
-  // getClientConfigOld(): Promise<{}>;
-  // getClientLicenseOld(): Promise<{}>;
-  // getTranslations(url): Promise<>;
-  // getWebSocketUrl(): string;
-  // webrtcToken(): Promise<>;
+  getClientConfigOld(): Promise<mattermost$ClientConfigOld>;
+  getClientLicenseOld(): Promise<mattermost$ClientLicenseOld>;
+  /* eslint-disable flowtype/no-weak-types */
+  getTranslations(url: string): Promise<any>; // What is this?
+  getWebSocketUrl(): string;
+  webrtcToken(): Promise<mattermost$WebrtcInfo>;
   
-  // // Integration Routes
-  // createIncomingWebhook(hook): Promise<>;
-  // getIncomingWebhook(hookId): Promise<>;
-  // getIncomingWebhooks(teamId = '', page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
-  // removeIncomingWebhook(hookId): Promise<>;
-  // updateIncomingWebhook(hook): Promise<>;
-  // createOutgoingWebhook(hook): Promise<>;
-  // getOutgoingWebhook(hookId): Promise<>;
-  // getOutgoingWebhooks(channelId = '', teamId = '', page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
-  // removeOutgoingWebhook(hookId): Promise<>;
-  // updateOutgoingWebhook(hook): Promise<>;
-  // regenOutgoingHookToken(id): Promise<>;
-  // getCommandsList(teamId): Promise<>;
-  // getCustomTeamCommands(teamId): Promise<>;
-  // executeCommand(command, commandArgs = {}): Promise<>;
-  // addCommand(command): Promise<>;
-  // editCommand(command): Promise<>;
-  // regenCommandToken(id): Promise<>;
-  // deleteCommand(id): Promise<>;
-  // createOAuthApp(app): Promise<>;
-  // editOAuthApp(app): Promise<>;
-  // getOAuthApps(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
-  // getOAuthApp(appId): Promise<>;
-  // getOAuthAppInfo(appId): Promise<>;
-  // deleteOAuthApp(appId): Promise<>;
-  // regenOAuthAppSecret(appId): Promise<>;
+  // Integration Routes
+  createIncomingWebhook(hook: mattermost$IncomingWebhook): Promise<mattermost$IncomingWebhook>;
+  getIncomingWebhook(hookId: string): Promise<mattermost$IncomingWebhook>;
+  getIncomingWebhooks(teamId?: string, page?: number, perPage?: number): Promise<mattermost$IncomingWebhook[]>;
+  removeIncomingWebhook(hookId: string): Promise<{ status: 'OK' }>;
+  updateIncomingWebhook(hook: mattermost$IncomingWebhook): Promise<mattermost$IncomingWebhook>;
+
+  createOutgoingWebhook(hook: mattermost$OutgoingWebhook): Promise<mattermost$OutgoingWebhook>;
+  getOutgoingWebhook(hookId: string): Promise<mattermost$OutgoingWebhook>;
+  getOutgoingWebhooks(channelId?: string, teamId?: string, page?: number, perPage?: number): Promise<mattermost$OutgoingWebhook[]>;
+  removeOutgoingWebhook(hookId: string): Promise<{ status: 'OK' }>;
+  updateOutgoingWebhook(hook: mattermost$OutgoingWebhook): Promise<mattermost$OutgoingWebhook>;
+  regenOutgoingHookToken(hookId: string): Promise<{ status: 'OK' }>;
+
+  getCommandsList(teamId: string): Promise<mattermost$Command[]>;
+  getCustomTeamCommands(teamId: string): Promise<mattermost$Command[]>;
+  executeCommand(command: string, commandArgs: mattermost$CommandArgs): Promise<mattermost$CommandResponse>;
+  addCommand(command: mattermost$Command): Promise<mattermost$Command>;
+  editCommand(command: mattermost$Command): Promise<>;
+  regenCommandToken(commandId: string): Promise<{ token: string }>;
+  deleteCommand(commandId: string): Promise<{ status: 'OK' }>;
+
+  createOAuthApp(app: mattermost$OAuthApp): Promise<mattermost$OAuthApp>;
+  editOAuthApp(app: mattermost$OAuthApp): Promise<mattermost$OAuthApp>;
+  getOAuthApps(page?: number, perPage?: number): Promise<mattermost$OAuthApp[]>;
+  getOAuthApp(appId: string): Promise<mattermost$OAuthApp>;
+  getOAuthAppInfo(appId: string): Promise<mattermost$OAuthApp>; // Without any private data
+  deleteOAuthApp(appId: string): Promise<{ status: 'OK' }>;
+  regenOAuthAppSecret(appId: string): Promise<mattermost$OAuthApp>;
   
   // // Emoji Routes
   // createCustomEmoji(emoji, imageData): Promise<>;

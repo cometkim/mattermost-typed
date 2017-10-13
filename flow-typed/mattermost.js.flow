@@ -2,6 +2,9 @@ declare type mattermost$Entity = {
   id?: string,
   create_at?: number,
   update_at?: number,
+};
+
+declare type mattermost$PermanentEntity = mattermost$Entity & {
   delete_at?: number
 };
 
@@ -44,7 +47,7 @@ declare type mattermost$User$NotifyProps = {
   user_id?: string
 };
 
-declare type mattermost$User = mattermost$Entity & {
+declare type mattermost$User = mattermost$PermanentEntity & {
   username?: string,
   password?: string,
   auth_data?: string,
@@ -98,7 +101,7 @@ declare type mattermost$UserStatus = {
   last_activity_at?: number
 };
 
-declare type mattermost$Team = mattermost$Entity & {
+declare type mattermost$Team = mattermost$PermanentEntity & {
   display_name?: string,
   name?: string,
   description?: string,
@@ -137,7 +140,7 @@ declare type mattermost$TeamStats = {
   active_member_count: number
 };
 
-declare type mattermost$Channel = mattermost$Entity & {
+declare type mattermost$Channel = mattermost$PermanentEntity & {
   team_id?: string,
   type?: 'O' | 'P' | 'D' | 'G',
   display_name?: string,
@@ -210,7 +213,7 @@ declare type mattermost$Post$Props = {
   override_icon_url?: string
 }
 
-declare type mattermost$Post = mattermost$Entity & {
+declare type mattermost$Post = mattermost$PermanentEntity & {
   is_pinned?: boolean,
   user_id?: string,
   channel_id?: string,
@@ -287,20 +290,6 @@ declare type mattermost$Audit = {
 declare type mattermost$MfaSecret = {
   secret: string,
   qr_code: string
-};
-
-declare type mattermost$OAuthApp = {
-  id?: string,
-  creator_id?: string,
-  create_at?: number,
-  update_at?: number,
-  client_secret?: string,
-  name?: string,
-  description?: string,
-  icon_url?: string,
-  callback_urls?: string[],
-  homepage?: string,
-  is_trusted?: boolean
 };
 
 declare type mattermost$UserAccessToken = {
@@ -544,6 +533,95 @@ declare type mattermost$WebrtcInfo = {
 	turn_uri?: string,
 	turn_password?: string,
 	turn_username?: string
+};
+
+declare type mattermost$IncomingWebhook = mattermost$PermanentEntity & {
+  user_id?: string,
+  channel_id: string,
+  team_id?: string,
+  display_name: string,
+  description: string,
+};
+
+declare type mattermost$IncomingWebhookRequest = {
+  text?: string,
+  username?: string,
+  icon_url?: string,
+  channel?: string,
+  props?: {},
+  attachments?: mattermost$SlackAttachment[],
+  type?: string
+};
+
+declare type mattermost$OutgoingWebhook = mattermost$PermanentEntity & {
+  token?: string,
+  creator_id?: string,
+  channel_id?: string,
+  team_id: string,
+  trigger_words?: string[],
+  trigger_when: 0 | 1,
+  callback_urls: string[],
+  display_name: string,
+  description: string,
+  content_type: 'application/x-www-form-urlencoded' | 'application/json'
+};
+
+declare type mattermost$OutgoingWebhookPayload = {
+  token: string,
+  team_id: string,
+  team_domain: string,
+  channel_id: string,
+  channel_name: string,
+  timestamp: number,
+  user_id: string,
+  user_name: string,
+  post_id: string,
+  text: string,
+  trigger_word: string,
+};
+
+declare type mattermost$Command = mattermost$PermanentEntity & {
+  token?: string,
+  creator_id?: string,
+  team_id: string,
+  trigger: string,
+  method: 'P' | 'G', 
+  username?: string,
+  icon_url?: string,
+  auto_complete?: boolean,
+  auto_complete_desc?: string,
+  auto_complete_hint?: string,
+  display_name: string,
+  description: string,
+  url: string
+};
+
+declare type mattermost$CommandArgs = {
+  user_id?: string,
+  channel_id: string,
+  team_id?: string,
+  root_id?: string,
+  parent_id?: string,
+};
+
+declare type mattermost$CommandResponse = {
+  response_type: 'in_channel' | 'ephemeral',
+  text: string,
+  username: string,
+  icon_url: string,
+  goto_location: string,
+  attachments: mattermost$SlackAttachment[]
+};
+
+declare type mattermost$OAuthApp = mattermost$Entity & {
+  creator_id?: string,
+  client_secret?: string,
+  name: string,
+  description: string,
+  icon_url?: string,
+  callback_urls: string[],
+  homepage: string,
+  is_trusted: boolean,
 };
 
 declare type mattermost$ResponseError = {

@@ -16,8 +16,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.7.0",
     "eslint-plugin-flow-typed": "^1.0.1",
-    "eslint-plugin-flowtype": "^2.35.1",
-    "flow-bin": "^0.54.1"
+    "eslint-plugin-flowtype": "^2.35.1"
   },
   "dependencies": {
     "mattermost-redux": "mattermost/mattermost-redux#master"

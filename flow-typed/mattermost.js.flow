@@ -537,6 +537,15 @@ declare type mattermost$ClientLicenseOld = {
   Users: string // numberic
 };
 
+declare type mattermost$WebrtcInfo = {
+	token: string,
+	gateway_url: string,
+	stun_uri?: string,
+	turn_uri?: string,
+	turn_password?: string,
+	turn_username?: string
+};
+
 declare type mattermost$ResponseError = {
   status_code: number,
   id: string,

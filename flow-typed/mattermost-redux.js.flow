@@ -294,12 +294,12 @@ declare class mattermost_redux$Client4 {
   getSystemEmojiImageUrl(filename: string): string;
   getCustomEmojiImageUrl(emojiId: string): string;
   
-  // // Jobs Routes
-  // getJob(id): Promise<>;
-  // getJobs(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
-  // getJobsByType(type, page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
-  // createJob(job): Promise<>;
-  // cancelJob(id): Promise<>;
+  // Jobs Routes
+  getJob(jobId: string): Promise<mattermost$Job>;
+  getJobs(page?: number, perPage?: number): Promise<mattermost$Job[]>;
+  getJobsByType(type: $PropertyType<mattermost$Job, 'type'>, page?: number, perPage?: number): Promise<mattermost$Job[]>;
+  createJob(job: mattermost$Job): Promise<mattermost$Job>;
+  cancelJob(jobId: string): Promise<{ status: 'OK' }>;
   
   // // Admin Routes
   // getLogs(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;

@@ -82,7 +82,7 @@ declare class mattermost_redux$Client4 {
   createUser(user: mattermost$User): Promise<mattermost$User>;
   updateUser(user: mattermost$UserPatch & {id: string}): Promise<mattermost$User>;
 
-  login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User>;
+  login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User & { failed_attempts: number }>;
   logout(): Promise<Response>;
   
   getProfiles(page?: number, perPage?: number): Promise<mattermost$User[]>;

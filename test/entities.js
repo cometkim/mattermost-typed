@@ -13,13 +13,13 @@ const user: mattermost$User = {
 	roles: 'system_user',
 	allow_marketing: true,
 	notify_props: {
-		channel: true,
+		channel: 'true',
 		comments: 'any',
 		desktop: 'mention',
 		desktop_duration: 5,
-		desktop_sound: true,
-		email: true,
-		first_name: false,
+		desktop_sound: 'true',
+		email: 'true',
+		first_name: 'false',
 		mention_keys: '',
 		push: 'mention',
 		push_status: 'away',
@@ -78,7 +78,7 @@ const post: mattermost$Post = {
 			footer_icon: '',
 			ts: null
 		}],
-		from_webhook: true
+		from_webhook: 'true'
 	},
 	hashtags: '',
 	pending_post_id: ''

@@ -31,14 +31,14 @@ declare type mattermost$Locale =
   | 'zh-TW';
 
 declare type mattermost$User$NotifyProps = {
-	channel?: boolean,
+	channel?: 'true' | 'false',
 	comments?: 'any' | 'root' | 'never',
 	desktop?: 'all' | 'mention' | 'none',
 	desktop_duration?: 3 | 5 | 10 | 0, // zero means infinity.
-	desktop_sound?: boolean,
-	email?: boolean,
-	first_name?: boolean,
-	mention_keys?: string,
+	desktop_sound?: 'true' | 'false',
+	email?: 'true' | 'false',
+	first_name?: 'true' | 'false',
+  mention_keys?: string,
 	push?: 'all' | 'mention' | 'none',
 	push_status?: 'online' | 'away' | 'offline',
 	user_id?: string
@@ -206,7 +206,8 @@ declare type mattermost$SlackAttachment = {
 
 declare type mattermost$Post$Props = {
   attachments?: mattermost$SlackAttachment[],
-  from_webhook?: boolean
+  from_webhook?: 'true' | 'false',
+  override_icon_url?: string
 }
 
 declare type mattermost$Post = mattermost$Entity & {

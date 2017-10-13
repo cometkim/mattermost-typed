@@ -82,7 +82,7 @@ declare class mattermost_redux$Client4 {
   getUserByUsername(username: string): Promise<mattermost$User>;
   getUserByEmail(email: string): Promise<mattermost$User>;
   createUser(user: mattermost$User): Promise<mattermost$User>;
-  updateUser(user: mattermost$UserPatch & {id: string}): Promise<mattermost$User>;
+  updateUser(user: mattermost$UserPatch & { id: string }): Promise<mattermost$User>;
 
   login(loginId: string, password: string, token?: string, deviceId?: string, ldapOnly?: boolean): Promise<mattermost$User & { failed_attempts: number }>;
   logout(): Promise<Response>;
@@ -206,7 +206,7 @@ declare class mattermost_redux$Client4 {
   // Post Routes
   createPost(post: mattermost$Post): Promise<mattermost$Post>;
   updatePost(post: mattermost$Post): Promise<mattermost$Post>;
-  patchPost(post: mattermost$PostPatch): Promise<mattermost$Post>;
+  patchPost(post: mattermost$PostPatch & { id: string }): Promise<mattermost$Post>;
   deletePost(postId: string): Promise<{ status: 'OK' }>;
 
   getPostThread(postId: string): Promise<mattermost$PostList>;

@@ -624,6 +624,11 @@ declare type mattermost$OAuthApp = mattermost$Entity & {
   is_trusted: boolean,
 };
 
+declare type mattermost$Emoji = mattermost$PermanentEntity & {
+  creator_id?: string,
+  name: string
+};
+
 declare type mattermost$ResponseError = {
   status_code: number,
   id: string,

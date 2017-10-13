@@ -287,12 +287,12 @@ declare class mattermost_redux$Client4 {
   deleteOAuthApp(appId: string): Promise<{ status: 'OK' }>;
   regenOAuthAppSecret(appId: string): Promise<mattermost$OAuthApp>;
   
-  // // Emoji Routes
-  // createCustomEmoji(emoji, imageData): Promise<>;
-  // getCustomEmojis(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;
-  // deleteCustomEmoji(emojiId): Promise<>;
-  // getSystemEmojiImageUrl = (filename);
-  // getCustomEmojiImageUrl = (id);
+  // Emoji Routes
+  createCustomEmoji(emoji: mattermost$Emoji, imageData: File): Promise<mattermost$Emoji>;
+  getCustomEmojis(page?: number, perPage?: number): Promise<mattermost$Emoji[]>;
+  deleteCustomEmoji(emojiId: string): Promise<{ status: 'OK' }>;
+  getSystemEmojiImageUrl(filename: string): string;
+  getCustomEmojiImageUrl(emojiId: string): string;
   
   // // Jobs Routes
   // getJob(id): Promise<>;

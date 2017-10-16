@@ -31,7 +31,7 @@ npm install -g flow-bin
 3. Put a line under `[libs]` on your `.flowconfig` file  
   ```diff
   [libs]
-  + <WORKDIR>/mattermost-typed/**/*.js.flow
+  + <WORKDIR>/mattermost-typed/flow-typed
   ```
 4. You may need more settings for Flow like [babel-preset-flow](https://babeljs.io/docs/plugins/preset-flow/) and [eslint-plugin-flowtype](https://github.com/gajus/eslint-plugin-flowtype)
 

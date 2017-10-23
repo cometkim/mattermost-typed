@@ -29,4 +29,4 @@ node_modules/
 
 # Flow Library Definitions
 # Use [flow-typed](https://github.com/flowtype/flow-typed) instead!
-flow-typed/npm/
+flow-typed/

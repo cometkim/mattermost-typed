@@ -1,8 +1,11 @@
 [ignore]
-.*/node_modules/*
+.*/node_modules/
 
 [include]
-./test/
+./examples/
+
+[libs]
+./flow/
 
 [options]
 suppress_comment=\\(.\\|\n\\)*\\$ExpectError

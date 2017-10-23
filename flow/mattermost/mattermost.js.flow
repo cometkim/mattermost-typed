@@ -1,11 +1,14 @@
+// @flow
+/* eslint no-undef: "off" */
+
 declare type mattermost$Entity = {
-  id?: string,
-  create_at?: number,
-  update_at?: number,
+  +id?: string,
+  +create_at?: number,
+  +update_at?: number,
 };
 
 declare type mattermost$PermanentEntity = mattermost$Entity & {
-  delete_at?: number
+  +delete_at?: number
 };
 
 declare type mattermost$AuthService =
@@ -630,7 +633,7 @@ declare type mattermost$Emoji = mattermost$PermanentEntity & {
 };
 
 declare type mattermost$Job = {
-  id?: string,
+  +id?: string,
   type: 
     | 'data_retention'
     | 'elasticsearch_post_indexing'
@@ -646,8 +649,8 @@ declare type mattermost$Job = {
 };
 
 declare type mattermost$ResponseError = {
-  status_code: number,
-  id: string,
-  message: string,
-  request_id: string
+  +status_code: number,
+  +id: string,
+  +message: string,
+  +request_id: string
 };

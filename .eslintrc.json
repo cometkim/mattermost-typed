@@ -1,0 +1,14 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "flowtype"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:flowtype/recommended"
+  ],
+  "rules": {
+    "no-console": "off",
+    "flowtype/space-after-type-colon": ["error", "always", { "allowLineBreak": true }]
+  }
+}

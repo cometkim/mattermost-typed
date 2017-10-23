@@ -1,3 +1,10 @@
+// @flow
+/* eslint no-undef: "off" */
+
+type StatusOK = {
+  status: 'OK'
+};
+
 declare class mattermost_redux$Client {
 
 }
@@ -98,15 +105,15 @@ declare class mattermost_redux$Client4 {
   searchUsers(term: string, options?: mattermost$UserSearch): Promise<mattermost$User[]>;
   autocompleteUsers(name: string, teamId: string, channelId: string): Promise<mattermost$UserAutocomplete>;
 
-  updateUserRoles(userId: string, roles: string): Promise<{ status: 'OK' }>;
-  updateUserMfa(userId: string, activate: boolean, code?: string): Promise<{ status: 'OK' }>;
+  updateUserRoles(userId: string, roles: string): Promise<StatusOK>;
+  updateUserMfa(userId: string, activate: boolean, code?: string): Promise<StatusOK>;
 
   getProfilePictureUrl(userId: string, lastPictureUpdate: number): string;
 
   getSessions(userId: string): Promise<mattermost$Session[]>;
   getCurrentSession(userId: string, token: string): Promise<mattermost$Session>;
-  revokeSession(userId: string, sessionId: string): Promise<{ status: 'OK' }>;
-  attachDevice(deviceId: string): Promise<{ status: 'OK' }>;
+  revokeSession(userId: string, sessionId: string): Promise<StatusOK>;
+  attachDevice(deviceId: string): Promise<StatusOK>;
 
   getUserAudits(userId: string, page?: number, perPage?: number): Promise<mattermost$Audit[]>;
 
@@ -124,12 +131,12 @@ declare class mattermost_redux$Client4 {
 
   getAuthorizedOAuthApps(userId: string): Promise<mattermost$OAuthApp[]>;
   authorizeOAuthApp(responseType: 'code', clientId: string, redirectUri: string, state: string, scope: string): Promise<{ redirect_url: string }>;
-  deauthorizeOAuthApp(clientId: string): Promise<{ status: 'OK' }>;
+  deauthorizeOAuthApp(clientId: string): Promise<StatusOK>;
 
   createUserAccessToken(userId: string, description: string): Promise<mattermost$UserAccessToken>;
   getUserAccessToken(tokenId: string): Promise<mattermost$UserAccessToken>;
   getUserAccessTokensForUser(userId: string, page?: number, perPage?: number): Promise<mattermost$UserAccessToken[]>;
-  revokeUserAccessToken(tokenId: string): Promise<{ status: 'OK' }>;
+  revokeUserAccessToken(tokenId: string): Promise<StatusOK>;
   
   // Team Routes
   createTeam(team: mattermost$Team): Promise<mattermost$Team>;
@@ -154,15 +161,15 @@ declare class mattermost_redux$Client4 {
   addToTeamFromInvite(hash?: string, data?: string, inviteId?: string): Promise<mattermost$TeamMember>;
   addUsersToTeam(teamId: string, userIds: string[]): Promise<mattermost$TeamMember[]>;
   joinTeam(inviteId: string): Promise<mattermost$TeamMember>;
-  removeFromTeam(teamId: string, userId: string): Promise<{ status: 'OK' }>;
+  removeFromTeam(teamId: string, userId: string): Promise<StatusOK>;
 
   getTeamStats(teamId: string): Promise<mattermost$TeamStats>;
 
   getTeamInviteInfo(inviteId: string): Promise<mattermost$Team>;
 
-  updateTeamMemberRoles(teamId: string, userId: string, roles: string): Promise<{ status: 'OK' }>;
+  updateTeamMemberRoles(teamId: string, userId: string, roles: string): Promise<StatusOK>;
 
-  sendEmailInvitesToTeam(teamId: string, emails: string[]): Promise<{ status: 'OK' }>;
+  sendEmailInvitesToTeam(teamId: string, emails: string[]): Promise<StatusOK>;
 
   importTeam(teamId: string, file: File, importFrom: 'slack'): Promise<{ results: string }>;
   
@@ -175,11 +182,11 @@ declare class mattermost_redux$Client4 {
   createGroupChannel(userIds: [string, string, string, string, string]): Promise<mattermost$Channel>;
   createGroupChannel(userIds: [string, string, string, string, string, string]): Promise<mattermost$Channel>;
   createGroupChannel(userIds: [string, string, string, string, string, string, string]): Promise<mattermost$Channel>;
-  deleteChannel(channelId: string): Promise<{ status: 'OK' }>;
+  deleteChannel(channelId: string): Promise<StatusOK>;
   updateChannel(channel: mattermost$Channel): Promise<mattermost$Channel>;
   patchChannel(channelId: string, patch: mattermost$ChannelPatch): Promise<mattermost$Channel>;
 
-  updateChannelNotifyProps(props: mattermost$ChannelMember$NotifyProps): Promise<{ status: 'OK' }>;
+  updateChannelNotifyProps(props: mattermost$ChannelMember$NotifyProps): Promise<StatusOK>;
 
   getChannel(channelId: string): Promise<mattermost$Channel>;
   getChannelByName(teamId: string, channelName: string): Promise<mattermost$Channel>;
@@ -193,9 +200,9 @@ declare class mattermost_redux$Client4 {
   getChannelMembersByIds(channelId: string, userIds: string[]): Promise<mattermost$ChannelMember[]>;
 
   addToChannel(userId: string, channelId: string): Promise<mattermost$ChannelMember>;
-  removeFromChannel(userId: string, channelId: string): Promise<{ status: 'OK' }>;
+  removeFromChannel(userId: string, channelId: string): Promise<StatusOK>;
 
-  updateChannelMemberRoles(channelId: string, userId: string, roles: string): Promise<{ status: 'OK' }>;
+  updateChannelMemberRoles(channelId: string, userId: string, roles: string): Promise<StatusOK>;
 
   getChannelStats(channelId: string): Promise<mattermost$ChannelStats>;
 
@@ -207,7 +214,7 @@ declare class mattermost_redux$Client4 {
   createPost(post: mattermost$Post): Promise<mattermost$Post>;
   updatePost(post: mattermost$Post): Promise<mattermost$Post>;
   patchPost(post: mattermost$PostPatch & { id: string }): Promise<mattermost$Post>;
-  deletePost(postId: string): Promise<{ status: 'OK' }>;
+  deletePost(postId: string): Promise<StatusOK>;
 
   getPostThread(postId: string): Promise<mattermost$PostList>;
   getPosts(channelId: string, page?: number, perPage?: number): Promise<mattermost$PostList>;
@@ -220,18 +227,18 @@ declare class mattermost_redux$Client4 {
   getFlaggedPosts(userId: string, channelId?: string, teamId?: string, page?: number, perPage?: number): Promise<mattermost$PostList>;
   getPinnedPosts(channelId: string): Promise<mattermost$PostList>;
 
-  pinPost(postId: string): Promise<{ status: 'OK' }>;
-  unpinPost(postId: string): Promise<{ status: 'OK' }>;
+  pinPost(postId: string): Promise<StatusOK>;
+  unpinPost(postId: string): Promise<StatusOK>;
 
   addReaction(userId: string, postId: string, emojiName: string): Promise<mattermost$Reaction>;
-  removeReaction(userId: string, postId: string, emojiName: string): Promise<{ status: 'OK' }>;
+  removeReaction(userId: string, postId: string, emojiName: string): Promise<StatusOK>;
   getReactionsForPost(postId: string): Promise<mattermost$Reaction[]>;
 
   searchPosts(teamId: string, terms: string, isOrSearch: boolean): Promise<mattermost$PostList>;
 
   getOpenGraphMetadata(url: string): Promise<{}>;
 
-  doPostAction(postId: string, actionId: string): Promise<{ status: 'OK' }>;
+  doPostAction(postId: string, actionId: string): Promise<StatusOK>;
   
   // Files Routes
   getFileUrl(fileId: string, timestamp?: string): string;
@@ -243,9 +250,9 @@ declare class mattermost_redux$Client4 {
   getFilePublicLink(fileId: string): Promise<{ link: string }>;
 
   // Preference Routes
-  savePreferences(userId: string, preferences: mattermost$Preference[]): Promise<{ status: 'OK' }>;
+  savePreferences(userId: string, preferences: mattermost$Preference[]): Promise<StatusOK>;
   getMyPreferences(): Promise<mattermost$Preference[]>;
-  deletePreferences(userId: string, preferences: mattermost$Preference[]): Promise<{ status: 'OK' }>;
+  deletePreferences(userId: string, preferences: mattermost$Preference[]): Promise<StatusOK>;
   
   // General Routes
   ping(): Promise<{ status: 'OK' | 'unhealthy' }>;
@@ -261,15 +268,15 @@ declare class mattermost_redux$Client4 {
   createIncomingWebhook(hook: mattermost$IncomingWebhook): Promise<mattermost$IncomingWebhook>;
   getIncomingWebhook(hookId: string): Promise<mattermost$IncomingWebhook>;
   getIncomingWebhooks(teamId?: string, page?: number, perPage?: number): Promise<mattermost$IncomingWebhook[]>;
-  removeIncomingWebhook(hookId: string): Promise<{ status: 'OK' }>;
+  removeIncomingWebhook(hookId: string): Promise<StatusOK>;
   updateIncomingWebhook(hook: mattermost$IncomingWebhook): Promise<mattermost$IncomingWebhook>;
 
   createOutgoingWebhook(hook: mattermost$OutgoingWebhook): Promise<mattermost$OutgoingWebhook>;
   getOutgoingWebhook(hookId: string): Promise<mattermost$OutgoingWebhook>;
   getOutgoingWebhooks(channelId?: string, teamId?: string, page?: number, perPage?: number): Promise<mattermost$OutgoingWebhook[]>;
-  removeOutgoingWebhook(hookId: string): Promise<{ status: 'OK' }>;
+  removeOutgoingWebhook(hookId: string): Promise<StatusOK>;
   updateOutgoingWebhook(hook: mattermost$OutgoingWebhook): Promise<mattermost$OutgoingWebhook>;
-  regenOutgoingHookToken(hookId: string): Promise<{ status: 'OK' }>;
+  regenOutgoingHookToken(hookId: string): Promise<StatusOK>;
 
   getCommandsList(teamId: string): Promise<mattermost$Command[]>;
   getCustomTeamCommands(teamId: string): Promise<mattermost$Command[]>;
@@ -277,20 +284,20 @@ declare class mattermost_redux$Client4 {
   addCommand(command: mattermost$Command): Promise<mattermost$Command>;
   editCommand(command: mattermost$Command): Promise<>;
   regenCommandToken(commandId: string): Promise<{ token: string }>;
-  deleteCommand(commandId: string): Promise<{ status: 'OK' }>;
+  deleteCommand(commandId: string): Promise<StatusOK>;
 
   createOAuthApp(app: mattermost$OAuthApp): Promise<mattermost$OAuthApp>;
   editOAuthApp(app: mattermost$OAuthApp): Promise<mattermost$OAuthApp>;
   getOAuthApps(page?: number, perPage?: number): Promise<mattermost$OAuthApp[]>;
   getOAuthApp(appId: string): Promise<mattermost$OAuthApp>;
   getOAuthAppInfo(appId: string): Promise<mattermost$OAuthApp>; // Without any private data
-  deleteOAuthApp(appId: string): Promise<{ status: 'OK' }>;
+  deleteOAuthApp(appId: string): Promise<StatusOK>;
   regenOAuthAppSecret(appId: string): Promise<mattermost$OAuthApp>;
   
   // Emoji Routes
   createCustomEmoji(emoji: mattermost$Emoji, imageData: File): Promise<mattermost$Emoji>;
   getCustomEmojis(page?: number, perPage?: number): Promise<mattermost$Emoji[]>;
-  deleteCustomEmoji(emojiId: string): Promise<{ status: 'OK' }>;
+  deleteCustomEmoji(emojiId: string): Promise<StatusOK>;
   getSystemEmojiImageUrl(filename: string): string;
   getCustomEmojiImageUrl(emojiId: string): string;
   
@@ -299,7 +306,7 @@ declare class mattermost_redux$Client4 {
   getJobs(page?: number, perPage?: number): Promise<mattermost$Job[]>;
   getJobsByType(type: $PropertyType<mattermost$Job, 'type'>, page?: number, perPage?: number): Promise<mattermost$Job[]>;
   createJob(job: mattermost$Job): Promise<mattermost$Job>;
-  cancelJob(jobId: string): Promise<{ status: 'OK' }>;
+  cancelJob(jobId: string): Promise<StatusOK>;
   
   // // Admin Routes
   // getLogs(page = 0, perPage = PER_PAGE_DEFAULT): Promise<>;

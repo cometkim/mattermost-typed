@@ -1,10 +1,30 @@
 {
   "name": "mattermost-typed",
-  "version": "0.0.1",
-  "description": "Type definitions for Mattermost",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
+  "version": "0.0.1",
+  "description": "Flow type definition library for Mattermost",
+  "keywords": [
+    "flow",
+    "type",
+    "libdefs",
+    "mattermost"
+  ],
+  "homepage": "https://github.com/CometKim/mattermost-typed",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CometKim/mattermost-typed.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CometKim/mattermost-typed/issues"
+  },
   "license": "MIT",
-  "private": true,
+  "files": [
+    "flow"
+  ],
+  "scripts": {
+    "flow:check": "flow check",
+    "flow:coverage": "flow coverage"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
@@ -15,10 +35,10 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^4.8.0",
-    "eslint-plugin-flow-typed": "^1.0.1",
-    "eslint-plugin-flowtype": "^2.39.1"
+    "eslint-plugin-flowtype": "^2.39.1",
+    "mattermost-redux": "mattermost/mattermost-redux#master"
   },
   "dependencies": {
-    "mattermost-redux": "mattermost/mattermost-redux#master"
+    "flow-bin": "^0.57.3"
   }
 }

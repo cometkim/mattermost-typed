@@ -23,10 +23,10 @@ yarn add --dev mattermost-typed
 
 Additionally, use [`flow-typed`](https://github.com/flowtype/flow-typed) to add types for your npm dependencies.
 
-### Add line under lib tag on your `.flowconfig`
+### Add line under libs tag on your `.flowconfig`
 ```diff
-[lib]
-+node_modules/mattermost-typed/flow
+[libs]
++./node_modules/mattermost-typed/flow/
 ```
 
 ### Add the preset (if you use BabelJS)
@@ -60,12 +60,11 @@ scripts: {
 * [vscode-flow-ide](https://marketplace.visualstudio.com/items?itemName=gcazaciuc.vscode-flow-ide)
 
 ## Is this really necessary? 
-You might wonder if this is really necessary. 
+You might wonder if this is really necessary.  
 Well, Here is why I came to think it's necessary - Can you inference the type of Get Posts API? 
 
-I was building a Mattermost integration and I thought it would of course be an array of Post. And I had to see the result of `map is not a function` because it returned an Object, not an Array.
-
-The following is what exactly the result of Get Posts looks like.
+I was building a Mattermost integration and I thought it would of course be an array of Post.  
+And I had to see the result of `map is not a function` because of the result of the Get Posts API that looks like:
 ```json
 {
   "order": [

@@ -1,7 +1,7 @@
 {
   "name": "mattermost-typed",
   "author": "Hyeseong Kim <cometkim.kr@gmail.com>",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Flow type definition library for Mattermost",
   "keywords": [
     "flow",
@@ -19,8 +19,8 @@
   },
   "license": "MIT",
   "files": [
-    "model",
-    "redux"
+    "./model",
+    "./redux"
   ],
   "scripts": {
     "prepublishOnly": "cp -r flow/* .",

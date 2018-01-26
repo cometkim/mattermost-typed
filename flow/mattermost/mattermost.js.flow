@@ -11,65 +11,6 @@ declare type mattermost$PermanentEntity = mattermost$Entity & {
   +delete_at?: number
 };
 
-declare type mattermost$Preference = { user_id: string } & {
-  category: 'notifications',
-  name: 'email_interval',
-  value: '0' | '30' | '900' | '3600' // zero means 'never', thirty means 'immediately'
-} | {
-  category: 'direct_channel_show' | 'group_channel_show',
-  name: string, // channel's id
-  value: 'true' | 'false'
-} | {
-  category: 'tutorial_step',
-  name: string, // user's id
-  value: string // numberic
-} | {
-  category: 'advanced_settings',
-  name: 
-    | 'feature_enabled_embed_preview' 
-    | 'feature_enabled_emojipicker' 
-    | 'feature_enabled_markdown_preview' 
-    | 'feature_enabled_webrtc_preview' 
-    | 'formatting' ,
-  value: 'true' | 'false'
-} | {
-  category: 'flagged_post',
-  name: string, // post's id
-  value: 'true' | 'false'
-} | {
-  category: 'favorite_channel',
-  name: string, // channel's id
-  value: 'true' | 'false'
-} | {
-  category: 'display_settings',
-  name: 'collapse_previews' | 'use_military_time',
-  value: 'true' | 'false' 
-} | {
-  category: 'display_settings',
-  name: 'channel_display_mode',
-  value: 'full' | 'centered'
-} | {
-  category: 'display_settings',
-  name: 'message_display',
-  value: 'clean' | 'compact'
-} | {
-  category: 'display_settings',
-  name: 'name_format',
-  value: 'full_name'
-} | {
-  category: 'display_settings',
-  name: 'selected_font',
-  value: string // font name
-} | {
-  category: 'last',
-  name: 'team' | 'channel',
-  value: string // last team's id or last channel's id
-} | {
-  category: 'theme',
-  name: '',
-  value: string
-};
-
 declare type mattermost$WebrtcInfo = {
 	token: string,
 	gateway_url: string,

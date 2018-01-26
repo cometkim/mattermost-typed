@@ -1,5 +1,9 @@
 // @flow
 
+declare module 'mattermost-typed/model/outgoing_webhook' {
+    declare export type $TriggerOption = mattermost$OutgoingWebhook$TriggerOption
+}
+
 declare type mattermost$OutgoingWebhook = {
     id?: string,
     create_at?: number,
@@ -10,7 +14,7 @@ declare type mattermost$OutgoingWebhook = {
     channel_id?: string,
     team_id?: string,
     trigger_words?: Array<string>,
-    trigger_when?: $TriggerOption,
+    trigger_when?: mattermost$OutgoingWebhook$TriggerOption,
     callback_urls?: Array<string>,
     display_name?: string,
     description?: string,
@@ -31,7 +35,6 @@ declare type mattermost$OutgoingWebhookPayload = {
     trigger_word: string,
 }
 
-export type $TriggerOption = mattermost$OutgoingWebhook$TriggerOption
 declare type mattermost$OutgoingWebhook$TriggerOption = TriggerWordsExactMatch | TriggerWordsStartWith
 type TriggerWordsExactMatch = 0
 type TriggerWordsStartWith = 1

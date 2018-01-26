@@ -233,9 +233,9 @@ declare class mattermost$redux$Client4 {
     pinPost(postId: string): Promise<StatusOK>;
     unpinPost(postId: string): Promise<StatusOK>;
   
-    addReaction(userId: string, postId: string, emojiName: string): Promise<mattermost$Reaction>;
+    addReaction(userId: string, postId: string, emojiName: string): Promise<mattermost$EmojiReaction>;
     removeReaction(userId: string, postId: string, emojiName: string): Promise<StatusOK>;
-    getReactionsForPost(postId: string): Promise<mattermost$Reaction[]>;
+    getReactionsForPost(postId: string): Promise<mattermost$EmojiReaction[]>;
   
     searchPosts(teamId: string, terms: string, isOrSearch: boolean): Promise<mattermost$PostList>;
   
@@ -265,7 +265,7 @@ declare class mattermost$redux$Client4 {
     /* eslint-disable flowtype/no-weak-types */
     getTranslations(url: string): Promise<any>; // What is this?
     getWebSocketUrl(): string;
-    webrtcToken(): Promise<mattermost$WebrtcInfo>;
+    // webrtcToken(): Promise<mattermost$WebrtcInfo>;
     
     // Integration Routes
     createIncomingWebhook(hook: mattermost$IncomingWebhook): Promise<mattermost$IncomingWebhook>;
@@ -283,7 +283,7 @@ declare class mattermost$redux$Client4 {
   
     getCommandsList(teamId: string): Promise<mattermost$Command[]>;
     getCustomTeamCommands(teamId: string): Promise<mattermost$Command[]>;
-    executeCommand(command: string, commandArgs: mattermost$CommandArgs): Promise<mattermost$CommandResponse>;
+    executeCommand(command: string, commandArgs: mattermost$CommandArgs): Promise<mattermost$CommandPayload>;
     addCommand(command: mattermost$Command): Promise<mattermost$Command>;
     editCommand(command: mattermost$Command): Promise<>;
     regenCommandToken(commandId: string): Promise<{ token: string }>;

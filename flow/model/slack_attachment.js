@@ -1,5 +1,9 @@
 // @flow
 
+declare module 'mattermost-typed/model/slack_attachment' {
+    declare export type $Filed = mattermost$SlackAttachment$Field
+}
+
 declare type mattermost$SlackAttachment = {
     id?: number,
     fallback?: string,
@@ -10,7 +14,7 @@ declare type mattermost$SlackAttachment = {
     title?: string,
     title_link?: string,
     text?: string,
-    fields?: Array<$Filed>,
+    fields?: Array<mattermost$SlackAttachment$Field>,
     image_url?: string,
     thumb_url?: string,
     footer?: string,
@@ -18,7 +22,6 @@ declare type mattermost$SlackAttachment = {
     ts?: ?number
 };
 
-export type $Filed = mattermost$SlackAttachment$Field
 declare type mattermost$SlackAttachment$Field = {
     title: string,
     value: string,

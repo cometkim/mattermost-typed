@@ -1,5 +1,9 @@
 // @flow
 
+declare module 'mattermost-typed/model/session' {
+    declare export type $Props = mattermost$Session$Props
+}
+
 declare type mattermost$Session = {
     id: string,
     token: string,
@@ -10,11 +14,10 @@ declare type mattermost$Session = {
     device_id: string,
     roles: string,
     is_oauth: boolean,
-    props: $Props,
+    props: mattermost$Session$Props,
     team_members: Array<mattermost$TeamMember>
 }
 
-export type $Props = mattermost$Session$Props
 declare type mattermost$Session$Props = {
     browser: string,
     os: string,

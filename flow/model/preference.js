@@ -34,115 +34,115 @@ declare type mattermost$Preference =
     | EnableWebRTCPreview
     )
 
-export type DirectChannelShow = {
+type DirectChannelShow = {
     category: 'direct_channel_show',
     name: string, // Channel ID
     value: BooleanString
 }
 
-export type GroupChannelShow = {
+type GroupChannelShow = {
     category: 'group_channel_show',
     name: string, // Channel ID
     value: BooleanString
 }
 
-export type FavoriteChannel = {
+type FavoriteChannel = {
     category: 'favorite_channel',
     name: string, // Channel ID
     value: BooleanString
 }
 
-export type FlaggedPost = {
+type FlaggedPost = {
     category: 'flagged_post',
     name: string, // Post ID
     value: BooleanString
 }
 
-export type LastTeam = {
+type LastTeam = {
     category: 'last',
     name: 'team',
     value: string // Team ID
 }
 
-export type LastChannel = {
+type LastChannel = {
     category: 'last',
     name: 'channel',
     value: string // Channel ID
 }
 
-export type Theme = {
+type Theme = {
     category: 'theme',
     name: '',
     value: string
 }
 
-export type EmailInterval = {
+type EmailInterval = {
     category: Category$Notification,
     name: 'email_interval',
     value: Never | Immediately | '900' | '3600' 
 }
 
-export type CollapsePreview = {
+type CollapsePreview = {
     category: Category$Display,
     name: 'collapse_previews',
     value: BooleanString
 }
 
-export type UseMilitaryTime = {
+type UseMilitaryTime = {
     category: Category$Display,
     name: 'use_military_time',
     value: BooleanString
 }
 
-export type ChannelDisplayMode = {
+type ChannelDisplayMode = {
     category: Category$Display,
     name: 'channel_display_mode',
     value: 'full' | 'centered'
 }
 
-export type MessageDisplayMode = {
+type MessageDisplayMode = {
     category: Category$Display,
     name: 'message_display',
     value: 'clean' | 'compact'
 }
 
-export type NameFormat = {
+type NameFormat = {
     category: Category$Display,
     name: 'name_format',
     value: 'username' | 'full_name' | 'nickname_full_name'
 }
 
-export type SelectedFont = {
+type SelectedFont = {
     category: Category$Display,
     name: 'selected_font',
     value: string
 }
 
-export type EnableEmbedPreview = {
+type EnableEmbedPreview = {
     categroy: Category$Advanced,
     name: 'feature_enabled_embed_preview',
     value: BooleanString
 }
 
-export type EnableEmojiPicker = {
+type EnableEmojiPicker = {
     category: Category$Advanced,
     name: 'feature_enabled_emojipicker',
     value: BooleanString
 }
 
-export type EnableMarkdownPreview = {
+type EnableMarkdownPreview = {
     category: Category$Advanced,
     name: 'feature_enabled_markdown_preview',
     value: BooleanString
 }
 
-export type EnableMarkdownFormatting = {
+type EnableMarkdownFormatting = {
     category: Category$Advanced,
     name: 'formatting',
     value: BooleanString
 }
 
-export type EnableWebRTCPreview = {
+type EnableWebRTCPreview = {
     category: Category$Advanced,
     name: 'feature_enabled_webrtc_preview',
     value: BooleanString

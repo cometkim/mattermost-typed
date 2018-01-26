@@ -2,6 +2,11 @@
 
 type BooleanString = 'true' | 'false'
 
+declare module 'mattermost-typed/model/post' {
+    declare export type $Type = mattermost$Post$Type 
+    declare export type $Props = mattermost$Post$Props
+}
+
 type Post = mattermost$Post
 declare type mattermost$Post = {
     id?: string,
@@ -15,8 +20,8 @@ declare type mattermost$Post = {
     parent_id?: string,
     original_id?: string,
     message?: string,
-    type?: $Type,
-    props?: $Props,
+    type?: mattermost$Post$Type,
+    props?: mattermost$Post$Props,
     hashtags?: string,
     file_ids?: string[],
     pending_post_id?: string,
@@ -26,7 +31,7 @@ declare type mattermost$Post = {
 declare type mattermost$PostPatch = {
     is_pinned?: boolean,
     message?: string,
-    props?: $Props,
+    props?: mattermost$Post$Props,
     file_ids?: Array<string>,
     has_reactions?: boolean
 };
@@ -38,7 +43,6 @@ declare type mattermost$PostList = {
     }
 };
 
-export type $Type = mattermost$Post$Type
 declare type mattermost$Post$Type = 
     | ''
     | 'slack_attachment'
@@ -53,7 +57,6 @@ declare type mattermost$Post$Type =
     | 'system_channel_deleted'
     | 'system_ephemeral'
 
-export type $Props = mattermost$Post$Props
 declare type mattermost$Post$Props = {
     attachments?: Array<mattermost$SlackAttachment>,
     from_webhook?: BooleanString,

@@ -1,3 +1,5 @@
+// @flow
+
 declare type mattermost$Command = {
     id?: string,
     create_at?: string,

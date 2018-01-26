@@ -3,6 +3,11 @@
 type BooleanString = 'true' | 'false'
 type Infinity = 0
 
+declare module 'mattermost-typed/model/user' {
+    declare export type $Props = mattermost$User$Props
+    declare export type $NotifyProps = mattermost$User$NotifyProps
+}
+
 type User = mattermost$User
 declare type mattermost$User = {
     id?: string,
@@ -21,8 +26,8 @@ declare type mattermost$User = {
     position?: string,
     roles?: string,
     allow_marketing?: boolean,
-    props?: $Props,
-    notify_props?: $NotifyProps,
+    props?: mattermost$User$Props,
+    notify_props?: mattermost$User$NotifyProps,
     last_password_update?: number,
     last_picture_update?: number,
     locale?: mattermost$Locale
@@ -35,8 +40,8 @@ declare type mattermost$UserPatch = {
     last_name?: string,
     position?: string,
     email?: string,
-    props?: $Props,
-    notify_props?: $NotifyProps,
+    props?: mattermost$User$Props,
+    notify_props?: mattermost$User$NotifyProps,
     locale?: mattermost$Locale
 }
 
@@ -62,10 +67,10 @@ declare type mattermost$UserStatus = {
     last_activity_at?: number
 }
 
-export type $Props = mattermost$User$Props
-declare type mattermost$User$Props = {}
+declare type mattermost$User$Props = {
 
-export type $NotifyProps = mattermost$User$NotifyProps;
+}
+
 declare type mattermost$User$NotifyProps = {
     channel?: BooleanString,
     comments?: 'any' | 'root' | 'never',

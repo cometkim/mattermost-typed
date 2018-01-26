@@ -27,6 +27,8 @@ declare module 'mattermost-typed/model' {
 
     declare export type SlackAttachment = mattermost$SlackAttachment
 
+    declare export type FileInfo = mattermost$FileInfo
+
     declare export type IncomingWebhook = mattermost$IncomingWebhook
     declare export type IncomingWebhookPayload = mattermost$IncomingWebhookPayload
 

@@ -13,7 +13,7 @@ const user: mattermost$User = {
     nickname: '',
     first_name: '',
     last_name: '',
-    positiond: '',
+    position: '',
     roles: 'system_user',
     allow_marketing: true,
     notify_props: {
@@ -25,7 +25,7 @@ const user: mattermost$User = {
         email: 'true',
         first_name: 'false',
         mention_keys: '',
-        push: 'mention',
+        push: 'true',
         push_status: 'away',
         user_id: ''
     },

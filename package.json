@@ -23,7 +23,7 @@
     "redux"
   ],
   "scripts": {
-    "prepublish": "cp -r flow/* .",
+    "prepublishOnly": "cp -r flow/* .",
     "flow:check": "flow check",
     "flow:coverage": "flow coverage"
   },

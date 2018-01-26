@@ -34,5 +34,6 @@ declare type mattermost$StorageDriver = 'local' | 'amazons3';
 declare type mattermost$ConnectionSecurityOption = '' | 'TLS' | 'STARTLS';
 
 // Permission Levels
-declare type mattermost$Permission$TeamManagement = 'all' | 'team_admin' | 'system_admin';
-declare type mattermost$Permission$ChannelManagement = 'all' | 'channel_admin' | 'team_admin' | 'system_admin';
+declare type mattermost$Permission$SystemLevel = 'all' | 'admin' | 'system_admin';
+declare type mattermost$Permission$TeamLevel = 'all' | 'team_admin' | 'system_admin';
+declare type mattermost$Permission$ChannelLevel = 'all' | 'channel_admin' | 'team_admin' | 'system_admin';

@@ -11,49 +11,6 @@ declare type mattermost$PermanentEntity = mattermost$Entity & {
   +delete_at?: number
 };
 
-declare type mattermost$Channel = mattermost$PermanentEntity & {
-  team_id?: string,
-  type?: 'O' | 'P' | 'D' | 'G',
-  display_name?: string,
-  name?: string,
-  header?: string,
-  purpose?: string,
-  last_post_at?: number,
-  total_msg_count?: number,
-  extra_update_at?: number,
-  creator_id?: string
-};
-
-declare type mattermost$ChannelPatch = {
-  display_name?: string,
-  name?: string,
-  header?: string,
-  purpose?: string
-};
-
-declare type mattermost$ChannelMember = {
-  channel_id: string,
-  user_id: string,
-  roles: string,
-  last_viewed_at: number,
-  msg_count: number,
-  mention_count: number,
-  notify_props: mattermost$ChannelMember$NotifyProps,
-  last_update_at: number
-};
-
-declare type mattermost$ChannelMember$NotifyProps = {
-  desktop?: 'default' | 'all' | 'mention' | 'none',
-  email?: 'default' | 'all' | 'mention' | 'none',
-  mark_unread?: 'all' | 'mention',
-  push?: 'default' | 'all' | 'mention' | 'none'
-};
-
-declare type mattermost$ChannelStats = {
-  channel_id: string,
-  member_count: number
-};
-
 declare type mattermost$SlackAttachment$Field = {
   title: string,
   value: string,

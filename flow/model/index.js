@@ -14,6 +14,13 @@ declare module 'mattermost-typed/model' {
     declare export type TeamMember = mattermost$TeamMember
     declare export type TeamUnread = mattermost$TeamUnread
 
+    declare export type Channel = mattermost$Channel
+    declare export type ChannelPatch = mattermost$ChannelPatch
+    declare export type ChannelStats = mattermost$ChannelStats
+
+    declare export type ChannelMember = mattermost$ChannelMember
+    declare export type ChannelUnread = mattermost$ChannelUnread
+
     declare export type ServerConfig = mattermost$ServerConfig;
     declare export type ClientConfig = mattermost$ClientConfig;
     declare export type LicenseInfo = mattermost$LicenseInfo;

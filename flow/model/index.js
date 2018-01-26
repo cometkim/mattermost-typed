@@ -37,6 +37,8 @@ declare module 'mattermost-typed/model' {
     declare export type CommandPayload = mattermost$CommandPayload
     declare export type CommandArgs = mattermost$CommandArgs
 
+    declare export type OAuthApp = mattermost$OAuthApp
+
     declare export type ServerConfig = mattermost$ServerConfig;
     declare export type ClientConfig = mattermost$ClientConfig;
     declare export type LicenseInfo = mattermost$LicenseInfo;

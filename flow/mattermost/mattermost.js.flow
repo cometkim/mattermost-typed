@@ -144,17 +144,6 @@ declare type mattermost$WebrtcInfo = {
 	turn_username?: string
 };
 
-declare type mattermost$OAuthApp = mattermost$Entity & {
-  creator_id?: string,
-  client_secret?: string,
-  name: string,
-  description: string,
-  icon_url?: string,
-  callback_urls: string[],
-  homepage: string,
-  is_trusted: boolean,
-};
-
 declare type mattermost$Emoji = mattermost$PermanentEntity & {
   creator_id?: string,
   name: string

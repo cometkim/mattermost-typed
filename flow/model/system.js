@@ -25,15 +25,15 @@ declare type mattermost$Locale =
     | 'zh-CN'
     | 'zh-TW';
 
-declare type mattermost$LogLevel = 'DEBUG' | 'INFO' | 'ERROR';
+declare type mattermost$LogLevel = 'DEBUG' | 'INFO' | 'ERROR'
 
-declare type mattermost$DatabaseDriver = 'mysql' | 'postgres';
+declare type mattermost$DatabaseDriver = 'mysql' | 'postgres'
 
-declare type mattermost$StorageDriver = 'local' | 'amazons3';
+declare type mattermost$StorageDriver = 'local' | 'amazons3'
 
-declare type mattermost$ConnectionSecurityOption = '' | 'TLS' | 'STARTLS';
+declare type mattermost$ConnectionSecurityOption = '' | 'TLS' | 'STARTLS'
 
 // Permission Levels
-declare type mattermost$Permission$SystemLevel = 'all' | 'admin' | 'system_admin';
-declare type mattermost$Permission$TeamLevel = 'all' | 'team_admin' | 'system_admin';
-declare type mattermost$Permission$ChannelLevel = 'all' | 'channel_admin' | 'team_admin' | 'system_admin';
+declare type mattermost$Permission$SystemLevel = 'all' | 'admin' | 'system_admin'
+declare type mattermost$Permission$TeamLevel = 'all' | 'team_admin' | 'system_admin'
+declare type mattermost$Permission$ChannelLevel = 'all' | 'channel_admin' | 'team_admin' | 'system_admin'

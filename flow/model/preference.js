@@ -35,115 +35,115 @@ declare type mattermost$Preference =
     )
 
 type DirectChannelShow = {
-    category: 'direct_channel_show',
-    name: string, // Channel ID
-    value: BooleanString
+    category: 'direct_channel_show';
+    name: string; // Channel ID
+    value: BooleanString;
 }
 
 type GroupChannelShow = {
-    category: 'group_channel_show',
-    name: string, // Channel ID
-    value: BooleanString
+    category: 'group_channel_show';
+    name: string; // Channel ID
+    value: BooleanString;
 }
 
 type FavoriteChannel = {
-    category: 'favorite_channel',
-    name: string, // Channel ID
-    value: BooleanString
+    category: 'favorite_channel';
+    name: string; // Channel ID
+    value: BooleanString;
 }
 
 type FlaggedPost = {
-    category: 'flagged_post',
-    name: string, // Post ID
-    value: BooleanString
+    category: 'flagged_post';
+    name: string; // Post ID
+    value: BooleanString;
 }
 
 type LastTeam = {
-    category: 'last',
-    name: 'team',
-    value: string // Team ID
+    category: 'last';
+    name: 'team';
+    value: string; // Team ID
 }
 
 type LastChannel = {
-    category: 'last',
-    name: 'channel',
-    value: string // Channel ID
+    category: 'last';
+    name: 'channel';
+    value: string; // Channel ID
 }
 
 type Theme = {
-    category: 'theme',
-    name: '',
-    value: string
+    category: 'theme';
+    name: '';
+    value: string;
 }
 
 type EmailInterval = {
-    category: Category$Notification,
-    name: 'email_interval',
-    value: Never | Immediately | '900' | '3600' 
+    category: Category$Notification;
+    name: 'email_interval';
+    value: Never | Immediately | '900' | '3600';
 }
 
 type CollapsePreview = {
-    category: Category$Display,
-    name: 'collapse_previews',
-    value: BooleanString
+    category: Category$Display;
+    name: 'collapse_previews';
+    value: BooleanString;
 }
 
 type UseMilitaryTime = {
-    category: Category$Display,
-    name: 'use_military_time',
-    value: BooleanString
+    category: Category$Display;
+    name: 'use_military_time';
+    value: BooleanString;
 }
 
 type ChannelDisplayMode = {
-    category: Category$Display,
-    name: 'channel_display_mode',
-    value: 'full' | 'centered'
+    category: Category$Display;
+    name: 'channel_display_mode';
+    value: 'full' | 'centered';
 }
 
 type MessageDisplayMode = {
-    category: Category$Display,
-    name: 'message_display',
-    value: 'clean' | 'compact'
+    category: Category$Display;
+    name: 'message_display';
+    value: 'clean' | 'compact';
 }
 
 type NameFormat = {
-    category: Category$Display,
-    name: 'name_format',
-    value: 'username' | 'full_name' | 'nickname_full_name'
+    category: Category$Display;
+    name: 'name_format';
+    value: 'username' | 'full_name' | 'nickname_full_name';
 }
 
 type SelectedFont = {
-    category: Category$Display,
-    name: 'selected_font',
-    value: string
+    category: Category$Display;
+    name: 'selected_font';
+    value: string;
 }
 
 type EnableEmbedPreview = {
-    categroy: Category$Advanced,
-    name: 'feature_enabled_embed_preview',
-    value: BooleanString
+    categroy: Category$Advanced;
+    name: 'feature_enabled_embed_preview';
+    value: BooleanString;
 }
 
 type EnableEmojiPicker = {
-    category: Category$Advanced,
-    name: 'feature_enabled_emojipicker',
-    value: BooleanString
+    category: Category$Advanced;
+    name: 'feature_enabled_emojipicker';
+    value: BooleanString;
 }
 
 type EnableMarkdownPreview = {
-    category: Category$Advanced,
-    name: 'feature_enabled_markdown_preview',
-    value: BooleanString
+    category: Category$Advanced;
+    name: 'feature_enabled_markdown_preview';
+    value: BooleanString;
 }
 
 type EnableMarkdownFormatting = {
-    category: Category$Advanced,
-    name: 'formatting',
-    value: BooleanString
+    category: Category$Advanced;
+    name: 'formatting';
+    value: BooleanString;
 }
 
 type EnableWebRTCPreview = {
-    category: Category$Advanced,
-    name: 'feature_enabled_webrtc_preview',
-    value: BooleanString
+    category: Category$Advanced;
+    name: 'feature_enabled_webrtc_preview';
+    value: BooleanString;
 }

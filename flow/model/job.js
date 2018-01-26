@@ -6,15 +6,15 @@ declare module 'mattermost-typed/model/job' {
 }
 
 declare type mattermost$Job = {
-    id?: string,
-    type?: mattermost$Job$Type,
-    priority?: number,
-    create_at?: number,
-    start_at?: number,
-    last_activity_at?: number,
-    status?: mattermost$Job$Status,
-    progress?: number,
-    data?: Object 
+    id?: string;
+    type?: mattermost$Job$Type;
+    priority?: number;
+    create_at?: number;
+    start_at?: number;
+    last_activity_at?: number;
+    status?: mattermost$Job$Status;
+    progress?: number;
+    data?: Object;
 }
 
 declare type mattermost$Job$Type =

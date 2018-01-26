@@ -5,6 +5,8 @@ declare module 'mattermost-typed/model' {
     declare export type UserPatch = mattermost$UserPatch
     declare export type UserSearch = mattermost$UserSearch
     declare export type UserAutoComplete = mattermost$UserAutocomplete
+    declare export type UserAccessToken = mattermost$UserAccessToken
+    declare export type MfaSecret = mattermost$MfaSecret
 
     declare export type Team = mattermost$Team
     declare export type TeamPatch = mattermost$TeamPatch
@@ -29,6 +31,9 @@ declare module 'mattermost-typed/model' {
 
     declare export type FileInfo = mattermost$FileInfo
 
+    declare export type Emoji = mattermost$Emoji
+    declare export type EmojiReaction = mattermost$EmojiReaction
+
     declare export type IncomingWebhook = mattermost$IncomingWebhook
     declare export type IncomingWebhookPayload = mattermost$IncomingWebhookPayload
 
@@ -40,6 +45,12 @@ declare module 'mattermost-typed/model' {
     declare export type CommandArgs = mattermost$CommandArgs
 
     declare export type OAuthApp = mattermost$OAuthApp
+
+    declare export type Audit = mattermost$Audit
+
+    declare export type Session = mattermost$Session
+
+    declare export type Job = mattermost$Job
 
     declare export type ServerConfig = mattermost$ServerConfig;
     declare export type ClientConfig = mattermost$ClientConfig;

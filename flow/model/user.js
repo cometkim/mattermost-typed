@@ -79,3 +79,16 @@ declare type mattermost$User$NotifyProps = {
     push_status?: 'online' | 'away' | 'offline',
     user_id?: string
 }
+
+declare type mattermost$UserAccessToken = {
+    id?: string,
+    token?: string,
+    user_id?: string,
+    description?: string
+};
+
+declare type mattermost$MfaSecret = {
+    secret: string,
+    qr_code: string
+};
+ 

@@ -11,55 +11,6 @@ declare type mattermost$PermanentEntity = mattermost$Entity & {
   +delete_at?: number
 };
 
-declare type mattermost$Session = {
-  id: string,
-  token: string,
-  create_at: number,
-  expires_at: number,
-  last_activity_at: number,
-  user_id: string,
-  device_id: string,
-  roles: string,
-  is_oauth: boolean,
-  props: mattermost$Session$Props,
-  team_members: mattermost$TeamMember[]
-};
-
-declare type mattermost$Session$Props = {
-  browser: string,
-  os: string,
-  platform: string
-};
-
-declare type mattermost$Audit = {
-  id: string,
-  create_at: number,
-  user_id: string,
-  action: string,
-  extra_info: string,
-  ip_address: string,
-  session_id: string
-};
-
-declare type mattermost$MfaSecret = {
-  secret: string,
-  qr_code: string
-};
-
-declare type mattermost$UserAccessToken = {
-  id?: string,
-  token?: string,
-  user_id?: string,
-  description?: string
-};
-
-declare type mattermost$Reaction = {
-  user_id: string,
-  post_id: string,
-  emoji_name: string,
-  create_at: number
-};
-
 declare type mattermost$Preference = { user_id: string } & {
   category: 'notifications',
   name: 'email_interval',
@@ -126,27 +77,6 @@ declare type mattermost$WebrtcInfo = {
 	turn_uri?: string,
 	turn_password?: string,
 	turn_username?: string
-};
-
-declare type mattermost$Emoji = mattermost$PermanentEntity & {
-  creator_id?: string,
-  name: string
-};
-
-declare type mattermost$Job = {
-  +id?: string,
-  type: 
-    | 'data_retention'
-    | 'elasticsearch_post_indexing'
-    | 'elasticsearch_post_aggregation'
-    | 'ldap_sync',
-  priority?: number,
-  create_at?: number,
-  start_at?: number,
-  last_activity_at?: number,
-  status?: 'pending' | 'in_progress' | 'success' | 'error' | 'cancel_requested' | 'canceled',
-  progress?: number,
-  data: {}
 };
 
 declare type mattermost$ResponseError = {

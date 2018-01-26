@@ -144,24 +144,6 @@ declare type mattermost$WebrtcInfo = {
 	turn_username?: string
 };
 
-declare type mattermost$IncomingWebhook = mattermost$PermanentEntity & {
-  user_id?: string,
-  channel_id: string,
-  team_id?: string,
-  display_name: string,
-  description: string,
-};
-
-declare type mattermost$IncomingWebhookRequest = {
-  text?: string,
-  username?: string,
-  icon_url?: string,
-  channel?: string,
-  props?: {},
-  attachments?: mattermost$SlackAttachment[],
-  type?: string
-};
-
 declare type mattermost$OutgoingWebhook = mattermost$PermanentEntity & {
   token?: string,
   creator_id?: string,

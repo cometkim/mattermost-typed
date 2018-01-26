@@ -144,33 +144,6 @@ declare type mattermost$WebrtcInfo = {
 	turn_username?: string
 };
 
-declare type mattermost$OutgoingWebhook = mattermost$PermanentEntity & {
-  token?: string,
-  creator_id?: string,
-  channel_id?: string,
-  team_id: string,
-  trigger_words?: string[],
-  trigger_when: 0 | 1,
-  callback_urls: string[],
-  display_name: string,
-  description: string,
-  content_type: 'application/x-www-form-urlencoded' | 'application/json'
-};
-
-declare type mattermost$OutgoingWebhookPayload = {
-  token: string,
-  team_id: string,
-  team_domain: string,
-  channel_id: string,
-  channel_name: string,
-  timestamp: number,
-  user_id: string,
-  user_name: string,
-  post_id: string,
-  text: string,
-  trigger_word: string,
-};
-
 declare type mattermost$Command = mattermost$PermanentEntity & {
   token?: string,
   creator_id?: string,

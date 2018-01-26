@@ -11,45 +11,6 @@ declare type mattermost$PermanentEntity = mattermost$Entity & {
   +delete_at?: number
 };
 
-declare type mattermost$Team = mattermost$PermanentEntity & {
-  display_name?: string,
-  name?: string,
-  description?: string,
-  email?: string,
-  type?: 'O' | 'I',
-  company_name?: string,
-  allowed_domains?: string,
-  invite_id?: string,
-  allow_open_invite?: boolean
-};
-
-declare type mattermost$TeamPatch = {
-  display_name?: string,
-  description?: string,
-  company_name?: string,
-  invite_id?: string,
-  allow_open_invite?: boolean
-};
-
-declare type mattermost$TeamMember = {
-  team_id: string,
-  user_id: string,
-  roles: string,
-  delete_at?: number
-};
-
-declare type mattermost$TeamUnread = {
-  team_id: string,
-  msg_count: number,
-  mention_count: number
-};
-
-declare type mattermost$TeamStats = {
-  team_id: string,
-  total_member_count: number,
-  active_member_count: number
-};
-
 declare type mattermost$Channel = mattermost$PermanentEntity & {
   team_id?: string,
   type?: 'O' | 'P' | 'D' | 'G',

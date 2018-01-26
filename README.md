@@ -3,38 +3,31 @@
 
 Compatible with [Mattermost API](https://api.mattermost.com) and [Mattermost Redux](https://github.com/mattermost/mattermost-redux)
 
-This will help you in Mattermost projects:
+This project will help you in your Mattermost projects:
 * Understanding Mattermost codebase.
 * Preventing building bad request or parsing response incorrectly.
 * Improves productivity with intelligence support.
 
-## How to apply this at my project?
+## Install
 
-### Initialize flow (if you've not).
-```
-yarn add --dev flow-bin
-npx flow init
-```
-
-### Add type library
-```
+Install
+```sh
 yarn add --dev mattermost-typed
+npx flow init # initialize flow if you've not.
 ```
 
-Additionally, use [`flow-typed`](https://github.com/flowtype/flow-typed) to add types for your npm dependencies.
-
-### Add line under libs tag on your `.flowconfig`
+Add a line under libs tag on your `.flowconfig`
 ```diff
 [libs]
-+./node_modules/mattermost-typed/flow/
++./node_modules/mattermost-typed/
 ```
 
-### Add the preset (if you use BabelJS)
-```
+Add the preset (if you use BabelJS)
+```sh
 yarn add --dev babel-preset-flow
 ```
 
-And add line into your `.babelrc`
+`.babelrc`
 ```diff
 preset: [
 +  "flow"
@@ -57,13 +50,12 @@ scripts: {
 
 ### VSCode Extentions
 * [Flow Language Support](https://marketplace.visualstudio.com/items?itemName=flowtype.flow-for-vscode)
-* [vscode-flow-ide](https://marketplace.visualstudio.com/items?itemName=gcazaciuc.vscode-flow-ide)
 
-## Is this really necessary? 
+## Why? 
 You might wonder if this is really necessary.  
-Well, Here is why I came to think it's necessary - Can you inference the type of Get Posts API? 
+Well, Here is why I came to think it is - Expect the type of Get Posts API.
 
-I was building a Mattermost integration and I thought it would of course be an array of Post.  
+I was building a Mattermost integration and I expected it would of course be an array of Post.  
 And I had to see the result of `map is not a function` because of the result of the Get Posts API that looks like:
 ```json
 {
@@ -81,12 +73,12 @@ And I had to see the result of `map is not a function` because of the result of 
 * It was your fault. Mattermost have documentation for it.
 * Why did you not write test, evil.
 
-It is wrong not to check the documentation or write test code. But I generally skip it when productivity is important like in prototyping.
-type checking is simple and a great alternative to avoid mistakes.
+You can think it is wrong not to check the documentation or write test code. But generally it could be skip when productivity is important like in prototyping.
+type checking is simple and a great solution to avoid mistakes.
 
 * PropTypes is not enough?
 
 PropTypes is great sollution to assert types. But it's only for React component.
 
-## Why not Typescript?
+## Typescript?
 TODO

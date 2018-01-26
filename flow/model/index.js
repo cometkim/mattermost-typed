@@ -21,6 +21,12 @@ declare module 'mattermost-typed/model' {
     declare export type ChannelMember = mattermost$ChannelMember
     declare export type ChannelUnread = mattermost$ChannelUnread
 
+    declare export type Post = mattermost$Post
+    declare export type PostPatch = mattermost$PostPatch
+    declare export type PostList = mattermost$PostList
+
+    declare export type SlackAttachment = mattermost$SlackAttachment
+
     declare export type ServerConfig = mattermost$ServerConfig;
     declare export type ClientConfig = mattermost$ClientConfig;
     declare export type LicenseInfo = mattermost$LicenseInfo;

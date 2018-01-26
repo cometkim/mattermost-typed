@@ -33,6 +33,10 @@ declare module 'mattermost-typed/model' {
     declare export type OutgoingWebhook = mattermost$OutgoingWebhook
     declare export type OutgoingWebhookPayload = mattermost$OutgoingWebhookPayload
 
+    declare export type Command = mattermost$Command
+    declare export type CommandPayload = mattermost$CommandPayload
+    declare export type CommandArgs = mattermost$CommandArgs
+
     declare export type ServerConfig = mattermost$ServerConfig;
     declare export type ClientConfig = mattermost$ClientConfig;
     declare export type LicenseInfo = mattermost$LicenseInfo;

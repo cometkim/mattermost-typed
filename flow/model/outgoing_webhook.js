@@ -16,7 +16,7 @@ declare type mattermost$OutgoingWebhook = {
     description?: string,
     content_type?: 'application/x-www-form-urlencoded' | 'application/json'
 }
-  
+
 declare type mattermost$OutgoingWebhookPayload = {
     token: string,
     team_id: string,

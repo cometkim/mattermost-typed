@@ -1,3 +1,9 @@
+⛔ DEPRECATED ⛔
+
+This library has been deprecated by https://github.com/cometkim/mattermost-typed/issues/18
+
+But [mattermost-redux](htttps://github.com/mattermost/mattermost-redux) is starting to support flowtype! Please consider to contribute types to the Mattermost codebase.
+
 # Mattermost type definitions 
 [Flow](https://flow.org/) type definition library for [Mattermost](https://about.mattermost.com/)
 
